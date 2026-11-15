@@ -1,0 +1,96 @@
+
+Structure Contents Record = 0
+      East
+         1
+   1000.00
+
+
+Structure Contents Record = 1
+      East
+         2
+   2000.00
+
+
+Structure Contents Record = 2
+      East
+         3
+   3000.00
+
+
+Structure Contents Record = 3
+      East
+         4
+   4000.00
+
+
+Structure Contents Record = 4
+      West
+         1
+   1000.00
+
+
+Structure Contents Record = 5
+      West
+         2
+   2000.00
+
+
+Structure Contents Record = 6
+      West
+         3
+   3000.00
+
+
+Structure Contents Record = 7
+      West
+         4
+   4000.00
+
+
+Structure Contents Record = 8
+     North
+         1
+   1000.00
+
+
+Structure Contents Record = 9
+     North
+         2
+   2000.00
+
+
+Structure Contents Record = 10
+     North
+         3
+   3000.00
+
+
+Structure Contents Record = 11
+     North
+         4
+   4000.00
+
+
+Structure Contents Record = 12
+     South
+         1
+   1000.00
+
+
+Structure Contents Record = 13
+     South
+         2
+   2000.00
+
+
+Structure Contents Record = 14
+     South
+         3
+   3000.00
+
+
+Structure Contents Record = 15
+     South
+         4
+   4000.00
+
