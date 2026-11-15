@@ -1,0 +1,2846 @@
+WEBVTT
+
+1
+00:00:08.029 --> 00:00:08.930
+Lehr, Mark: Okay.
+
+2
+00:00:09.280 --> 00:00:16.750
+Lehr, Mark: Last time we met, I know I wanted to bring up Spring Streams.
+
+3
+00:00:17.000 --> 00:00:19.450
+Lehr, Mark: In other words, we were talking about charts last.
+
+4
+00:00:19.910 --> 00:00:24.199
+Lehr, Mark: Last time. And, what I wanted to show you, we talked about
+
+5
+00:00:24.460 --> 00:00:29.700
+Lehr, Mark: Ask you the integer integer to ask Itoya and Atoy.
+
+6
+00:00:29.830 --> 00:00:36.670
+Lehr, Mark: And things like that, and I just wanted to show you the proper way of reading in anything and then converting it.
+
+7
+00:00:36.850 --> 00:00:47.109
+Lehr, Mark: Okay. Not we're talking about ranges here. And then what I want to do is make sure that you understand the difference between comparing char rays and strings. Okay.
+
+8
+00:00:47.600 --> 00:00:59.860
+Lehr, Mark: So, those are two things that I want to make sure you understand before we go into structures, because that's the next thing that we're going to talk about in here, is structures. And also, I want to apologize
+
+9
+00:01:00.110 --> 00:01:07.340
+Lehr, Mark: To not having some of the lectures up from last week, Because two things happened.
+
+10
+00:01:07.680 --> 00:01:13.510
+Lehr, Mark: Okay? Last week. One, they changed the interface for Zoom. Okay?
+
+11
+00:01:13.630 --> 00:01:18.939
+Lehr, Mark: Now, that means the AI was… so it didn't do transcripts on some of them, okay?
+
+12
+00:01:19.280 --> 00:01:23.610
+Lehr, Mark: The other was that, okay.
+
+13
+00:01:23.970 --> 00:01:26.700
+Lehr, Mark: They didn't just change the default settings.
+
+14
+00:01:26.880 --> 00:01:30.929
+Lehr, Mark: They went and changed the overall interface altogether.
+
+15
+00:01:31.060 --> 00:01:34.209
+Lehr, Mark: And I could not find… in other words, they put
+
+16
+00:01:35.340 --> 00:01:40.849
+Lehr, Mark: videos that I record, and then stop and go to the next class, they put them right on top of themselves.
+
+17
+00:01:41.120 --> 00:01:45.439
+Lehr, Mark: So that you would have to have gone through the previous one to get to the next one.
+
+18
+00:01:45.660 --> 00:01:53.910
+Lehr, Mark: So I had to go through, and it took 3 hours. Well, it took more than that. I gave up last week, and actually this morning, I called Zoom up.
+
+19
+00:01:54.210 --> 00:01:59.359
+Lehr, Mark: And so, first I went through all the chats and everything, the AIs, and I want to tell you guys.
+
+20
+00:02:00.640 --> 00:02:04.390
+Lehr, Mark: That are, again, becoming software engineers.
+
+21
+00:02:06.090 --> 00:02:16.839
+Lehr, Mark: Don't I come to the conclusion don't ever invite me, okay? Because if you invite me to your thing, I may just blow it up. Okay? Because you guys, when you make changes.
+
+22
+00:02:17.380 --> 00:02:23.820
+Lehr, Mark: You just reorient things and don't give anybody a clue of where you've put them.
+
+23
+00:02:24.310 --> 00:02:29.429
+Lehr, Mark: I literally had to spend 3 hours this morning on the phone. First, I went through the AI
+
+24
+00:02:29.700 --> 00:02:37.209
+Lehr, Mark: you know, things to try and find it. Then I went to the phone thinking, well, I'm gonna have to talk to a person. So, you know what I got when I got on the phone?
+
+25
+00:02:38.950 --> 00:02:41.640
+Lehr, Mark: just an AI audio.
+
+26
+00:02:42.020 --> 00:02:46.710
+Lehr, Mark: In other words, there are no… there is no way to get to a person other than to
+
+27
+00:02:46.800 --> 00:03:00.040
+Lehr, Mark: Where is Zoom? In Timbuktu? To drive to Timbuktu, walk in the door and say, get me a software programmer immediately before I explode, okay? I'm not going to bring a bomb, I'm just going to explode.
+
+28
+00:03:00.040 --> 00:03:07.689
+Lehr, Mark: Okay? From the standpoint of, you know, you guys are all gonna be software… you do this crap without checking out your interfaces?
+
+29
+00:03:07.720 --> 00:03:09.669
+Lehr, Mark: And I bring this up constantly.
+
+30
+00:03:10.020 --> 00:03:13.950
+Lehr, Mark: But last week, you screwed me twice. In other words, you're future programmers.
+
+31
+00:03:14.180 --> 00:03:21.280
+Lehr, Mark: By one, unsetting the default settings that I had on it to do the AI.
+
+32
+00:03:21.470 --> 00:03:23.170
+Lehr, Mark: So that you guys will get.
+
+33
+00:03:23.370 --> 00:03:27.240
+Lehr, Mark: You know, a transcript as well as an outline.
+
+34
+00:03:28.010 --> 00:03:29.249
+Lehr, Mark: which you get.
+
+35
+00:03:29.530 --> 00:03:36.530
+Lehr, Mark: I don't have to have that set that way, which, when it wiped out the default setting. And then, of course, for me to even find my
+
+36
+00:03:36.810 --> 00:03:46.190
+Lehr, Mark: My videos when they're not stacked up on top of each other. Oh, I thought it was, you know, seppuku time. But.
+
+37
+00:03:46.910 --> 00:04:05.029
+Lehr, Mark: I got it worked out. So, I didn't get it worked out till this morning, so I will go back in and spend now the hours of time to find the lectures, and then pop it up, okay? So, sorry about last week. Obviously, if they're not up, you guys aren't responsible for them, so I'll have to ascend the assignment.
+
+38
+00:04:05.160 --> 00:04:07.899
+Lehr, Mark: Okay, that required you to look over the lectures.
+
+39
+00:04:08.220 --> 00:04:15.160
+Lehr, Mark: So have no fear. It'll be there now. It's welcome to acrobat chrome. No.
+
+40
+00:04:15.630 --> 00:04:16.969
+Lehr, Mark: Leave me alone.
+
+41
+00:04:18.440 --> 00:04:26.120
+Lehr, Mark: Okay, so what I want to look at are making sure you know how to handle strings and chars.
+
+42
+00:04:27.210 --> 00:04:40.169
+Lehr, Mark: specifically how to convert. So, the first thing that I'm going to look at, and this is in your 17A master, so, we're going to look at string streams. So, I'm going to share the screen. Well, excuse me.
+
+43
+00:04:40.630 --> 00:04:42.879
+Lehr, Mark: Cancel. I'm gonna make sure I'm recording.
+
+44
+00:04:43.460 --> 00:04:44.250
+Lehr, Mark: Good.
+
+45
+00:04:44.690 --> 00:04:45.660
+Lehr, Mark: recording.
+
+46
+00:04:45.860 --> 00:04:47.729
+Lehr, Mark: So now we're going to share the screen.
+
+47
+00:04:48.120 --> 00:04:48.930
+Lehr, Mark: Sure.
+
+48
+00:04:54.260 --> 00:04:58.159
+Lehr, Mark: And just to let you know, that's another thing. Now using Zoom.
+
+49
+00:04:59.270 --> 00:05:02.630
+Lehr, Mark: you know, I want to pull it to full screen.
+
+50
+00:05:02.740 --> 00:05:07.979
+Lehr, Mark: And then if I touch anything, any other option, like to share screen or whatever, it…
+
+51
+00:05:08.480 --> 00:05:13.469
+Lehr, Mark: closes it back down. In other words, It'll undo the full screen.
+
+52
+00:05:13.610 --> 00:05:18.480
+Lehr, Mark: So, anyway, it's almost beyond stupidity.
+
+53
+00:05:19.350 --> 00:05:22.220
+Lehr, Mark: So, here we go with string strings.
+
+54
+00:05:23.830 --> 00:05:27.380
+Lehr, Mark: Let's… Go in and do this.
+
+55
+00:05:30.120 --> 00:05:38.949
+Lehr, Mark: Okay, so this is how… you should read… in other words, if you want to, read in a different data type.
+
+56
+00:05:39.220 --> 00:05:41.190
+Lehr, Mark: In other words, read in a string.
+
+57
+00:05:41.300 --> 00:05:49.399
+Lehr, Mark: of numbers, or whatever, and then convert them. Instead of using ASCII to integer, or integer to ASCII, or anything else, you'll notice something.
+
+58
+00:05:50.160 --> 00:05:54.150
+Lehr, Mark: I pull in, the string stream library.
+
+59
+00:05:54.560 --> 00:05:55.290
+Lehr, Mark: Okay?
+
+60
+00:05:57.100 --> 00:06:02.139
+Lehr, Mark: Then I just create a string stream variable. I declare it.
+
+61
+00:06:02.380 --> 00:06:06.909
+Lehr, Mark: and create one. Then, I create a string Y, okay?
+
+62
+00:06:08.200 --> 00:06:10.110
+Lehr, Mark: So, what do I do?
+
+63
+00:06:10.670 --> 00:06:14.859
+Lehr, Mark: I read in a couple of integers, type in two integers.
+
+64
+00:06:15.350 --> 00:06:17.480
+Lehr, Mark: and I get the entire line.
+
+65
+00:06:17.710 --> 00:06:19.059
+Lehr, Mark: Which is a string.
+
+66
+00:06:19.380 --> 00:06:26.339
+Lehr, Mark: And then, you know, as many of them as there are, one right after another. Then you'll notice what I do.
+
+67
+00:06:26.530 --> 00:06:31.959
+Lehr, Mark: Is I take this as an input into my string string, okay?
+
+68
+00:06:32.100 --> 00:06:35.040
+Lehr, Mark: And then I convert those values.
+
+69
+00:06:35.820 --> 00:06:39.979
+Lehr, Mark: into… feed them into the two integers. Does everybody see that?
+
+70
+00:06:41.650 --> 00:06:46.179
+Lehr, Mark: So, this is how I would take… and it doesn't matter the data type.
+
+71
+00:06:46.660 --> 00:06:57.870
+Lehr, Mark: If I want to read in multiple things, you know, integers and floats, and read them into strings, and then pop them in and test them out, see if they're within range if I want. But,
+
+72
+00:06:58.030 --> 00:07:03.310
+Lehr, Mark: So that is how, that I would go in and read,
+
+73
+00:07:03.460 --> 00:07:16.379
+Lehr, Mark: to a whole line, and then take that whole line and shove it into the string stream, and then pull off from the string stream the variables that I need that are separated by spaces. Okay?
+
+74
+00:07:16.840 --> 00:07:26.810
+Lehr, Mark: So, I suppose I could go in and run this if I wanted to, but it's in the CI17A master, and then I would have to go there.
+
+75
+00:07:28.380 --> 00:07:32.659
+Lehr, Mark: Okay, let's… let's see if I can do this. This is in the class.
+
+76
+00:07:33.960 --> 00:07:36.759
+Lehr, Mark: View terminal. Now I gotta fight.
+
+77
+00:07:36.890 --> 00:07:41.259
+Lehr, Mark: Oh, yes, I trust myself. Thank you for asking.
+
+78
+00:07:41.900 --> 00:07:46.690
+Lehr, Mark: So, I'm in the 17A master, but I should be in the class, so I'm gonna go to…
+
+79
+00:07:46.810 --> 00:07:48.200
+Lehr, Mark: CD class.
+
+80
+00:07:49.470 --> 00:07:55.720
+Lehr, Mark: And now I'm gonna… and then, of course, it says, stop sharing… hi, AppZoom is sharing your screen.
+
+81
+00:07:56.030 --> 00:08:05.220
+Lehr, Mark: Okay, hide that message, you don't see it, but I see it. It's so annoying, the pop-ups that come up, it's almost unbelievable, okay?
+
+82
+00:08:05.350 --> 00:08:16.309
+Lehr, Mark: Again, you programmers are doing matter. It might not even be you programmers are doing it. It could be some some user experience person that's forcing the programmers to do all this crap.
+
+83
+00:08:16.510 --> 00:08:29.560
+Lehr, Mark: Maybe that's what it is, okay? It's not really the programmer's fault anymore, it's the user experience person that's in front of the… commanding the programmers to do all sorts of crap. So right now, by the way.
+
+84
+00:08:30.310 --> 00:08:35.350
+Lehr, Mark: I am watching a program called Halt and Catch Fire.
+
+85
+00:08:35.679 --> 00:08:36.940
+Lehr, Mark: Which is about…
+
+86
+00:08:37.520 --> 00:08:45.139
+Lehr, Mark: The programmers that came up in the 80s, you know, the 70s and 80s, and all the trials and tribulations that they went through.
+
+87
+00:08:45.440 --> 00:08:57.399
+Lehr, Mark: It's a nifty little show on, well, I don't know what, I don't control the TV at home, somebody else does. So I don't know what app it's on, but you should watch it. It's kind of fun to watch.
+
+88
+00:08:57.600 --> 00:09:03.929
+Lehr, Mark: You you well, just give it a shot. You'll you'll find it fun.
+
+89
+00:09:04.150 --> 00:09:08.230
+Lehr, Mark: So, we're in the string stream, Nope.
+
+90
+00:09:08.720 --> 00:09:12.920
+Lehr, Mark: I'm not static string stream. We're in the string stream integer.
+
+91
+00:09:21.560 --> 00:09:22.670
+Lehr, Mark: What do you mean?
+
+92
+00:09:23.340 --> 00:09:24.240
+Lehr, Mark: Oh.
+
+93
+00:09:24.590 --> 00:09:31.919
+Lehr, Mark: That's right, I have to go into the folder, because these are… unfortunately for you guys, these are all NetBeans projects.
+
+94
+00:09:33.230 --> 00:09:34.720
+Lehr, Mark: So,
+
+95
+00:09:40.150 --> 00:09:41.380
+Lehr, Mark: How come it's not?
+
+96
+00:09:43.290 --> 00:09:45.050
+Lehr, Mark: CD string.
+
+97
+00:09:47.120 --> 00:09:47.810
+Lehr, Mark: Okay.
+
+98
+00:09:51.480 --> 00:09:52.840
+Lehr, Mark: That's so weird.
+
+99
+00:09:53.400 --> 00:09:54.360
+Lehr, Mark: How come it?
+
+100
+00:10:04.590 --> 00:10:07.120
+Lehr, Mark: And now it's not… Oh.
+
+101
+00:10:08.820 --> 00:10:12.600
+Lehr, Mark: CD class. How… how did I get out of that? That's…
+
+102
+00:10:19.080 --> 00:10:20.699
+Lehr, Mark: Spring stream integer.
+
+103
+00:10:23.610 --> 00:10:26.270
+Lehr, Mark: Okay, E plus plus main.
+
+104
+00:10:29.980 --> 00:10:36.049
+Lehr, Mark: So I'm going to run this with type in 2 integers, you know, one and 2.
+
+105
+00:10:36.820 --> 00:10:41.159
+Lehr, Mark: So you can see what happened was, it runs.
+
+106
+00:10:41.280 --> 00:10:42.969
+Lehr, Mark: So I read them in.
+
+107
+00:10:43.470 --> 00:10:53.559
+Lehr, Mark: as a string, right? I get… I got the whole line, by the way, okay? So I'm getting the whole… when I say type in two integers, I didn't have to put them all on…
+
+108
+00:10:53.560 --> 00:11:04.630
+Lehr, Mark: You know, one line or two line. I wrote them all on the same line. So I got it. I made sure that it was an empty. Then I took Y, that whole string line, and I fed it into string string.
+
+109
+00:11:05.020 --> 00:11:09.919
+Lehr, Mark: Then I… Created two integers, and I shoved the results
+
+110
+00:11:10.160 --> 00:11:17.700
+Lehr, Mark: into 2 integers, and that's what I printed out down here. I'm printing out the 2 integers.
+
+111
+00:11:18.070 --> 00:11:18.850
+Lehr, Mark: Okay?
+
+112
+00:11:19.440 --> 00:11:22.309
+Lehr, Mark: And of course, I compiled this under
+
+113
+00:11:22.920 --> 00:11:27.980
+Lehr, Mark: standard, so I don't have to use those stupid examples.
+
+114
+00:11:30.780 --> 00:11:35.079
+Lehr, Mark: I'll save. We'll go back through and do it again. View the terminal.
+
+115
+00:11:36.200 --> 00:11:37.929
+Lehr, Mark: I hate that, by the way.
+
+116
+00:11:38.080 --> 00:11:43.299
+Lehr, Mark: Whenever you guys put STDs down, it makes me think that you're going to the doctor.
+
+117
+00:11:43.590 --> 00:11:47.239
+Lehr, Mark: Okay? Because you've… you've had too much fun.
+
+118
+00:11:47.560 --> 00:11:48.560
+Lehr, Mark: Okay?
+
+119
+00:11:48.660 --> 00:11:50.199
+Lehr, Mark: So, don't do that.
+
+120
+00:11:51.610 --> 00:11:56.789
+Lehr, Mark: That's what I'm thinking when I… when I see those STDs, okay?
+
+121
+00:11:57.450 --> 00:12:01.200
+Lehr, Mark: Pretty soon, I'll tell you, well, what kind do you have? So don't do it.
+
+122
+00:12:02.620 --> 00:12:08.049
+Lehr, Mark: So, there we go there. And now, let's go in and do the float. Same thing for the float.
+
+123
+00:12:08.810 --> 00:12:10.540
+Lehr, Mark: Or any data type.
+
+124
+00:12:10.970 --> 00:12:13.550
+Lehr, Mark: Here, we'll go back to here, and this will be the float.
+
+125
+00:12:16.600 --> 00:12:22.619
+Lehr, Mark: So here I just create two floats and then I up and I did the same thing here. So I'm gonna take this out.
+
+126
+00:12:31.250 --> 00:12:33.599
+Lehr, Mark: Save it. I'll save.
+
+127
+00:12:34.910 --> 00:12:36.630
+Lehr, Mark: Go to the terminal.
+
+128
+00:12:39.670 --> 00:12:43.680
+Lehr, Mark: I'm in the integers, now I gotta back it out and go to the floats.
+
+129
+00:12:48.220 --> 00:12:49.020
+Lehr, Mark: Huh.
+
+130
+00:12:50.300 --> 00:12:52.410
+Lehr, Mark: Many files with the same name.
+
+131
+00:12:53.970 --> 00:12:55.900
+Lehr, Mark: D++.
+
+132
+00:12:57.550 --> 00:13:04.180
+Lehr, Mark: Main… Ls. Now I'll put that slash a
+
+133
+00:13:04.940 --> 00:13:09.159
+Lehr, Mark: 4 and 5, okay? So those are flows.
+
+134
+00:13:11.000 --> 00:13:21.559
+Lehr, Mark: So anyway, just as an example, okay? So that's how you, instead of using ATOI and from the book, those have been deprecated for a long time.
+
+135
+00:13:21.880 --> 00:13:29.809
+Lehr, Mark: So, this is the way you would want to use the ASCII to integer, integer to ASCII, just use StringStream. StringStream is used to convert.
+
+136
+00:13:30.340 --> 00:13:42.750
+Lehr, Mark: You would. Here's really what you do is you read in the string like I just did, and then you would check it using regular expressions. And then once you checked it using regular expressions, then you will go in and change it to whatever you would.
+
+137
+00:13:42.800 --> 00:13:53.599
+Lehr, Mark: output from string stream into the data type that either primitive or otherwise class utilizing string string. Okay, so that's the proper way to do it.
+
+138
+00:13:55.030 --> 00:14:00.290
+Lehr, Mark: Okay, now, so… oh, and then what I wanted to do was show you, maybe.
+
+139
+00:14:01.980 --> 00:14:05.079
+Lehr, Mark: Back to the class, let's see.
+
+140
+00:14:11.050 --> 00:14:16.359
+Lehr, Mark: Scale binary now. Okay, let's go. Let's go to the lab. Maybe I did it in the lab.
+
+141
+00:14:17.790 --> 00:14:21.559
+Lehr, Mark: Game of Life… That's a fun one to look at.
+
+142
+00:14:22.190 --> 00:14:23.809
+Lehr, Mark: But I don't have time for that.
+
+143
+00:14:25.070 --> 00:14:32.980
+Lehr, Mark: Didn't I do just… Sorting…
+
+144
+00:14:35.690 --> 00:14:37.790
+Lehr, Mark: Oh, that would have been back in 5.
+
+145
+00:14:38.130 --> 00:14:41.470
+Lehr, Mark: Okay, file open folder.
+
+146
+00:14:41.940 --> 00:14:43.590
+Lehr, Mark: Let's go back to 5.
+
+147
+00:14:45.210 --> 00:14:47.289
+Lehr, Mark: Just to remind you guys.
+
+148
+00:14:50.530 --> 00:14:52.269
+Lehr, Mark: Might be in the class.
+
+149
+00:14:54.070 --> 00:14:55.320
+Lehr, Mark: Oh, nope.
+
+150
+00:15:00.590 --> 00:15:01.520
+Lehr, Mark: Oh.
+
+151
+00:15:01.760 --> 00:15:05.050
+Lehr, Mark: That's what I hate. I use the AI to…
+
+152
+00:15:06.680 --> 00:15:14.040
+Lehr, Mark: To put into folders things that were relative to each other. So, that's pretty funny. I like that.
+
+153
+00:15:14.150 --> 00:15:18.549
+Lehr, Mark: That's… it makes it very hard on me now to do what I needed to do.
+
+154
+00:15:27.670 --> 00:15:30.840
+Lehr, Mark: Okay, that's… That is pretty funny.
+
+155
+00:15:32.770 --> 00:15:36.110
+Lehr, Mark: Okay, let's go back to the class.
+
+156
+00:15:37.340 --> 00:15:40.519
+Lehr, Mark: Midterm hints, class, SIG code…
+
+157
+00:15:44.570 --> 00:15:45.790
+Lehr, Mark: Not in there.
+
+158
+00:15:50.330 --> 00:15:52.090
+Lehr, Mark: screen compare example.
+
+159
+00:15:52.250 --> 00:15:53.220
+Lehr, Mark: Madam.
+
+160
+00:15:53.620 --> 00:15:55.040
+Lehr, Mark: That'd be okay.
+
+161
+00:15:58.070 --> 00:16:00.150
+Lehr, Mark: Just to make sure that,
+
+162
+00:16:06.570 --> 00:16:09.530
+Lehr, Mark: String compare string, for example.
+
+163
+00:16:10.260 --> 00:16:11.200
+Lehr, Mark: Me.
+
+164
+00:16:12.060 --> 00:16:16.160
+Lehr, Mark: Okay, so I wanted to make sure that
+
+165
+00:16:17.250 --> 00:16:19.950
+Lehr, Mark: You know, you guys knew how to do a string compare.
+
+166
+00:16:20.230 --> 00:16:23.660
+Lehr, Mark: So, compare one string to another.
+
+167
+00:16:23.780 --> 00:16:27.629
+Lehr, Mark: And what does the string compare function do for you?
+
+168
+00:16:27.750 --> 00:16:29.960
+Lehr, Mark: Basically, it does this.
+
+169
+00:16:30.640 --> 00:16:36.400
+Lehr, Mark: You know, when you compare two strings, so we'll, we'll go into this.
+
+170
+00:16:37.490 --> 00:16:39.040
+Lehr, Mark: View terminal.
+
+171
+00:16:40.280 --> 00:16:42.050
+Lehr, Mark: again, trust it.
+
+172
+00:16:44.880 --> 00:16:47.080
+Lehr, Mark: Go into the string compare.
+
+173
+00:16:48.530 --> 00:16:52.230
+Lehr, Mark: I don't see… oh, there it is. String compare example, okay.
+
+174
+00:16:52.880 --> 00:16:54.410
+Lehr, Mark: STR…
+
+175
+00:16:57.550 --> 00:17:02.150
+Lehr, Mark: CD… No, just T++ main.
+
+176
+00:17:04.260 --> 00:17:06.079
+Lehr, Mark: dot slash A.
+
+177
+00:17:09.530 --> 00:17:17.079
+Lehr, Mark: So here I have Megadeth compared to Metallica. You've got a minus 1. What a minus 1 means is that it's less than.
+
+178
+00:17:17.650 --> 00:17:22.819
+Lehr, Mark: A zero means that it's the same. Okay, so I just ran through
+
+179
+00:17:23.040 --> 00:17:25.789
+Lehr, Mark: And, in this little example.
+
+180
+00:17:26.060 --> 00:17:28.800
+Lehr, Mark: I wanted to show you what String Compare does.
+
+181
+00:17:29.350 --> 00:17:31.990
+Lehr, Mark: So, we have 3 strings.
+
+182
+00:17:32.520 --> 00:17:51.969
+Lehr, Mark: And I'm comparing them. String 1 to string 2, string 1 to string 3, string 2 to string 1, string 2 to string 3, string 3 to string 1, string 3 to string 2, and then string 3 to string 3. So you can see when they were less than, equal to, and greater than, okay? So that's what you're looking at here when you go run the terminal.
+
+183
+00:17:52.280 --> 00:17:57.810
+Lehr, Mark: So… If it's less than, it gives you a minus 1, okay?
+
+184
+00:17:57.990 --> 00:18:01.079
+Lehr, Mark: If it's, greater than, it gives you a 1.
+
+185
+00:18:01.390 --> 00:18:04.410
+Lehr, Mark: So Metallica is greater than Megadeth.
+
+186
+00:18:04.940 --> 00:18:09.340
+Lehr, Mark: Because it's a 1. And then, of course, if they're the same, it gives you a 0.
+
+187
+00:18:09.510 --> 00:18:17.510
+Lehr, Mark: Okay? So, I just wanted to show you what string compare gives you, because that's what you would need to use when you were doing,
+
+188
+00:18:17.650 --> 00:18:25.410
+Lehr, Mark: Char arrays, and trying to compare one string to another, because it's unlike the string class.
+
+189
+00:18:25.600 --> 00:18:32.330
+Lehr, Mark: The string class does this automatically for you. In other words, it uses less than, greater than, and things like that.
+
+190
+00:18:32.440 --> 00:18:38.970
+Lehr, Mark: But for a char array, the string compare has to go through and compare each and every character.
+
+191
+00:18:39.390 --> 00:18:48.969
+Lehr, Mark: And then it'll get to the character where it's not equal to, and it'll give it whether it's less than or greater than with a minus one or a one. Okay. So that's.
+
+192
+00:18:49.570 --> 00:18:52.290
+Lehr, Mark: Just something that I wanted to make sure you guys knew.
+
+193
+00:18:52.950 --> 00:19:00.279
+Lehr, Mark: Okay, so having said that, that takes us through the char, and that's all that I wanted to do with respect to that.
+
+194
+00:19:00.590 --> 00:19:09.139
+Lehr, Mark: So now we want to get into what I really want to get into, which is, Structures.
+
+195
+00:19:09.680 --> 00:19:10.490
+Lehr, Mark: So…
+
+196
+00:19:19.830 --> 00:19:20.680
+Lehr, Mark: Okay.
+
+197
+00:19:22.820 --> 00:19:26.179
+Lehr, Mark: So, you're all seeing this on your screen, right? Okay, good.
+
+198
+00:19:29.300 --> 00:19:30.090
+Lehr, Mark: Okay.
+
+199
+00:19:31.520 --> 00:19:41.239
+Lehr, Mark: structures, represent a couple of things. Number one, it represents the most complicated syntax that you're going to encounter.
+
+200
+00:19:43.260 --> 00:19:47.840
+Lehr, Mark: In other words, the syntax does not get any worse than this.
+
+201
+00:19:48.500 --> 00:19:56.909
+Lehr, Mark: This is as bad as it gets. When we get to classes, it'll be no worse syntactically than this, okay?
+
+202
+00:19:57.080 --> 00:20:04.910
+Lehr, Mark: So, if you thought that pointers were a problem back in Chapter 9, For dynamically created arrays.
+
+203
+00:20:05.860 --> 00:20:08.340
+Lehr, Mark: Well, they're nothing compared to this.
+
+204
+00:20:09.010 --> 00:20:09.850
+Lehr, Mark: Okay.
+
+205
+00:20:09.990 --> 00:20:13.960
+Lehr, Mark: Many students… fail.
+
+206
+00:20:14.340 --> 00:20:18.580
+Lehr, Mark: To understand Chapter 9 in terms of pointers and dynamic memory.
+
+207
+00:20:19.270 --> 00:20:26.809
+Lehr, Mark: But it is nothing compared to Chapter 11, which covers the same thing with respect to pointers and structures. Okay?
+
+208
+00:20:26.910 --> 00:20:38.459
+Lehr, Mark: Now, one thing that was very interesting about last night when I was watching Halt and Catch Fire, which is that mini little mini series that was four seasons, I think about the.
+
+209
+00:20:38.810 --> 00:20:41.840
+Lehr, Mark: The programmers that were back in the 80s.
+
+210
+00:20:43.300 --> 00:20:51.459
+Lehr, Mark: They had this big discussion. Oh, my. And it was a knockdown drag out. They were going to fire people because they were using C.
+
+211
+00:20:51.700 --> 00:20:53.300
+Lehr, Mark: Instead of assembly.
+
+212
+00:20:54.550 --> 00:20:59.740
+Lehr, Mark: Okay, so it was kind of an interesting… Little…
+
+213
+00:21:00.360 --> 00:21:09.319
+Lehr, Mark: So they actually have some very technical things in there, which is kind of cute because they were showing code. They were showing basic code, you know, basic.
+
+214
+00:21:09.610 --> 00:21:12.550
+Lehr, Mark: One of the guys was learning BASIC, and…
+
+215
+00:21:12.690 --> 00:21:19.009
+Lehr, Mark: The others were learning C, and then some were programming in assembly. So it was pretty, pretty interesting.
+
+216
+00:21:19.760 --> 00:21:25.949
+Lehr, Mark: So anyway, let's get into structures. Okay, here's what you need to know about a structure.
+
+217
+00:21:26.590 --> 00:21:28.589
+Lehr, Mark: And it's why it was created.
+
+218
+00:21:29.830 --> 00:21:31.170
+Lehr, Mark: It's for databases.
+
+219
+00:21:31.720 --> 00:21:33.490
+Lehr, Mark: That's why this was created.
+
+220
+00:21:34.650 --> 00:21:37.679
+Lehr, Mark: What I want to do is create a database. What is a database?
+
+221
+00:21:37.910 --> 00:21:40.469
+Lehr, Mark: It's a bunch of tables that are related.
+
+222
+00:21:41.640 --> 00:21:44.539
+Lehr, Mark: So, a database goes into a folder.
+
+223
+00:21:45.370 --> 00:21:48.779
+Lehr, Mark: And each table is represented by a structure.
+
+224
+00:21:48.930 --> 00:21:50.230
+Lehr, Mark: in that folder.
+
+225
+00:21:50.690 --> 00:21:56.000
+Lehr, Mark: And you read and write, modify the data by reading and modifying structures.
+
+226
+00:21:56.330 --> 00:22:05.529
+Lehr, Mark: So, you have a folder that's comprised of a bunch of files, Each file represents a structure.
+
+227
+00:22:06.100 --> 00:22:09.550
+Lehr, Mark: The data in a structure. That's where this comes from.
+
+228
+00:22:09.780 --> 00:22:13.769
+Lehr, Mark: All databases are written with respect to structures.
+
+229
+00:22:15.480 --> 00:22:18.639
+Lehr, Mark: They're saved binary file-wise.
+
+230
+00:22:18.920 --> 00:22:24.269
+Lehr, Mark: in this file, so that it's as compressed… it's just zeros and ones. That's all it is.
+
+231
+00:22:25.300 --> 00:22:34.159
+Lehr, Mark: So you're not only going to learn about structures, which are tables, you're also going to learn how to read and write to them in Chapter 12.
+
+232
+00:22:35.760 --> 00:22:38.489
+Lehr, Mark: Anybody got that? That's what we're here for.
+
+233
+00:22:41.240 --> 00:22:42.100
+Lehr, Mark: So…
+
+234
+00:22:46.180 --> 00:22:47.919
+Lehr, Mark: It's an abstract data type.
+
+235
+00:22:48.090 --> 00:22:52.110
+Lehr, Mark: What is it composed of? It's composed of… pretty…
+
+236
+00:22:52.520 --> 00:22:55.589
+Lehr, Mark: The primitive data types that we already discussed.
+
+237
+00:22:55.770 --> 00:23:07.020
+Lehr, Mark: the 12 different types of integers, and booleans, and chars, and floats, and doubles, and all… everything, okay? It's composed of that, but it's also composed of…
+
+238
+00:23:07.290 --> 00:23:09.140
+Lehr, Mark: Things that you can create.
+
+239
+00:23:10.790 --> 00:23:15.870
+Lehr, Mark: classes with their individual pieces in them. It also is composed of
+
+240
+00:23:16.080 --> 00:23:19.690
+Lehr, Mark: Nested, you know, aggregates, which means…
+
+241
+00:23:20.280 --> 00:23:23.900
+Lehr, Mark: You create a table, and it could refer to a table within a table.
+
+242
+00:23:24.150 --> 00:23:32.899
+Lehr, Mark: So it's a relation. Matter of fact, relational databases are just like that. You have keys in a table that refer to another table.
+
+243
+00:23:33.500 --> 00:23:34.909
+Lehr, Mark: In other words, pointers.
+
+244
+00:23:35.660 --> 00:23:41.669
+Lehr, Mark: So, this is what an abstract data type, in terms of how we physically think about it.
+
+245
+00:23:42.060 --> 00:23:49.970
+Lehr, Mark: And yeah, the data type specifies values because of stored operations. User. Yeah, yeah, yada, yada, yada. It's a damn table. Okay.
+
+246
+00:23:51.480 --> 00:23:59.379
+Lehr, Mark: A definition captures general characteristics. In other words, you can take an object and put its properties.
+
+247
+00:23:59.890 --> 00:24:02.130
+Lehr, Mark: into a table.
+
+248
+00:24:02.910 --> 00:24:06.049
+Lehr, Mark: Okay? That's what we're talking about here.
+
+249
+00:24:11.390 --> 00:24:22.980
+Lehr, Mark: Combining data into structures, well… SQL contains two pieces, the data definition and the data manipulation.
+
+250
+00:24:23.310 --> 00:24:29.780
+Lehr, Mark: The data definition part of the language looks very similar to a C structure.
+
+251
+00:24:31.090 --> 00:24:36.910
+Lehr, Mark: So, if you want to learn about databases and SQL, this is one half of what you're going to be learning.
+
+252
+00:24:38.520 --> 00:24:44.640
+Lehr, Mark: There's a data definition portion of it, and the data definition looks Almost exactly like this.
+
+253
+00:24:44.900 --> 00:24:46.390
+Lehr, Mark: Okay, this structure.
+
+254
+00:24:48.790 --> 00:25:04.629
+Lehr, Mark: So you could have an ID representing the primary key, name, year in school, GPA. GPA is calculatable. You'd never put it in a database. You'd calculate it. You wouldn't shove it into some position. That would be stupid.
+
+255
+00:25:05.890 --> 00:25:17.140
+Lehr, Mark: Because as the data changes, the GPA would be changed. So you wouldn't, you'd never put something calculable into a spot into a table. That's dumb.
+
+256
+00:25:19.580 --> 00:25:25.400
+Lehr, Mark: Declaration. Structure. Yes. Struct. Okay, here's something else that I want you to know.
+
+257
+00:25:28.170 --> 00:25:29.680
+Lehr, Mark: Your first project.
+
+258
+00:25:30.100 --> 00:25:35.930
+Lehr, Mark: I'm very clear on this. Yea, verily, your first project shall only have structures.
+
+259
+00:25:36.470 --> 00:25:38.600
+Lehr, Mark: Reading and writing to binary files.
+
+260
+00:25:38.760 --> 00:25:40.599
+Lehr, Mark: It shall not have classes.
+
+261
+00:25:41.440 --> 00:25:46.129
+Lehr, Mark: Now, some of you have been able to get around this by copying from somewhere else.
+
+262
+00:25:46.420 --> 00:25:51.629
+Lehr, Mark: And seeing that it's class, and then changing the class to a struct.
+
+263
+00:25:52.250 --> 00:25:53.420
+Lehr, Mark: And it'll work.
+
+264
+00:25:54.000 --> 00:25:54.979
+Lehr, Mark: You know that?
+
+265
+00:25:55.810 --> 00:26:02.130
+Lehr, Mark: Yeah, I didn't think you'd… but I found this out. The students are very devious little critters.
+
+266
+00:26:02.530 --> 00:26:21.099
+Lehr, Mark: And I'd say, nope, you have to use structures. And they'd go in, they'd copy from some… some object-oriented thing, and they would change the class to a structure. I didn't even know you could do that. You guys have taught me so much over the years, it's not even funny. You do crap that I have never attempted. You… you, like, switch
+
+267
+00:26:21.210 --> 00:26:28.130
+Lehr, Mark: arrays and indexes around, and then I gotta sit there and try and figure out what the you did. It happened to work.
+
+268
+00:26:28.950 --> 00:26:32.509
+Lehr, Mark: But, you know, so anyway, on your first…
+
+269
+00:26:33.450 --> 00:26:42.470
+Lehr, Mark: Project, you are only allowed to utilize the concepts between not Chapter 9 and Chapter 12 in GATS, which means you can utilize
+
+270
+00:26:42.620 --> 00:26:44.180
+Lehr, Mark: dynamic arrays.
+
+271
+00:26:44.400 --> 00:26:51.389
+Lehr, Mark: Anything to do with chars, obviously. Anything to do with structures and reading, writing the binary files. That is what's going to be in your first project.
+
+272
+00:26:51.720 --> 00:27:10.090
+Lehr, Mark: Then what are you going to do for your second project? Then you're going to take the first project and modify it to an object-oriented approach, and put classes in, and all sorts of stuff, okay? So you don't have to rewrite the moon. Well, I mean, you're going to rewrite the moon, but it's going to be your same program, modified to an object-oriented approach.
+
+273
+00:27:11.030 --> 00:27:15.010
+Lehr, Mark: So, I bring this up because you are going to utilize structures
+
+274
+00:27:15.390 --> 00:27:19.420
+Lehr, Mark: In, in your first project, okay? Exclusively.
+
+275
+00:27:20.540 --> 00:27:23.989
+Lehr, Mark: And what does the structure look like? It looks like a form.
+
+276
+00:27:25.130 --> 00:27:31.719
+Lehr, Mark: Take the information on a form, and you can blast it into a structure, okay?
+
+277
+00:27:35.900 --> 00:27:39.180
+Lehr, Mark: Again, the book doesn't cover this. The book…
+
+278
+00:27:39.360 --> 00:27:51.340
+Lehr, Mark: comes from structures as if they're, you know, a magical thing that you get to create and all. They don't relate it to what it was used and meant for, okay? This is what it was meant for. Tables in a database.
+
+279
+00:27:55.590 --> 00:28:01.300
+Lehr, Mark: Accessing structures. Well, now you have the dot operator. So, here's the key.
+
+280
+00:28:04.490 --> 00:28:09.450
+Lehr, Mark: A one-dimensional structure, in other words, a single structure, is an array.
+
+281
+00:28:10.090 --> 00:28:11.290
+Lehr, Mark: That's interesting.
+
+282
+00:28:11.850 --> 00:28:13.760
+Lehr, Mark: A structure is an array.
+
+283
+00:28:14.430 --> 00:28:15.120
+Lehr, Mark: Wow.
+
+284
+00:28:17.000 --> 00:28:19.849
+Lehr, Mark: A one-dimensional structure is a table.
+
+285
+00:28:24.030 --> 00:28:28.880
+Lehr, Mark: Here's the difference. In a structure, instead of using an index.
+
+286
+00:28:29.090 --> 00:28:31.680
+Lehr, Mark: You use the name of the column.
+
+287
+00:28:33.130 --> 00:28:36.870
+Lehr, Mark: So, in this… Students.
+
+288
+00:28:37.320 --> 00:28:42.359
+Lehr, Mark: structure, you have, the first column being student ID.
+
+289
+00:28:42.930 --> 00:28:45.579
+Lehr, Mark: And then the next column being the name.
+
+290
+00:28:45.720 --> 00:28:48.379
+Lehr, Mark: And then the next column being the GPA.
+
+291
+00:28:51.250 --> 00:28:56.550
+Lehr, Mark: So, this is a row array with the columns as names.
+
+292
+00:28:56.940 --> 00:28:59.329
+Lehr, Mark: You don't have an index, you have a name.
+
+293
+00:29:03.670 --> 00:29:09.519
+Lehr, Mark: Here is the structure for payroll. You'll notice something about this.
+
+294
+00:29:09.710 --> 00:29:13.939
+Lehr, Mark: It is a data type that you create.
+
+295
+00:29:14.680 --> 00:29:16.369
+Lehr, Mark: So you'll notice something.
+
+296
+00:29:16.470 --> 00:29:23.850
+Lehr, Mark: by programmer convention, You create the structure, it begins with a capital.
+
+297
+00:29:24.020 --> 00:29:26.880
+Lehr, Mark: All your variables are lowercase.
+
+298
+00:29:27.580 --> 00:29:35.120
+Lehr, Mark: But your data types, in this case, the ones that you create, by programming convention, are capitalized.
+
+299
+00:29:36.750 --> 00:29:45.699
+Lehr, Mark: So if I create a structure called payroll, I will capitalize the first. In other words, it's not a lowercase.
+
+300
+00:29:45.950 --> 00:29:51.429
+Lehr, Mark: It's a capital, it's a… it's an… A user-defined data type.
+
+301
+00:29:52.110 --> 00:30:03.620
+Lehr, Mark: These user-defined data types normally go into their own file. Normally, they go into a .h file. Can you put them above
+
+302
+00:30:03.760 --> 00:30:07.569
+Lehr, Mark: Maine? Yes. That's not normally where they go.
+
+303
+00:30:07.690 --> 00:30:10.100
+Lehr, Mark: They normally go into another file.
+
+304
+00:30:16.300 --> 00:30:18.470
+Lehr, Mark: Oh, so, here…
+
+305
+00:30:19.660 --> 00:30:28.949
+Lehr, Mark: You've defined above main the this is the user library portion of this. You define a structure. And then, of course, you can declare
+
+306
+00:30:31.220 --> 00:30:35.869
+Lehr, Mark: An object from the class, or the structure.
+
+307
+00:30:36.450 --> 00:30:37.170
+Lehr, Mark: Okay?
+
+308
+00:30:38.870 --> 00:30:41.639
+Lehr, Mark: Yes, I know, this is all…
+
+309
+00:30:44.590 --> 00:30:46.940
+Lehr, Mark: Let me tell you where I got my first.
+
+310
+00:30:49.430 --> 00:30:51.360
+Lehr, Mark: Where I got my first structure.
+
+311
+00:30:51.980 --> 00:30:53.389
+Lehr, Mark: As a little aside.
+
+312
+00:30:54.930 --> 00:30:58.699
+Lehr, Mark: Once upon a time, I worked at General Dynamics, okay?
+
+313
+00:30:59.180 --> 00:31:06.109
+Lehr, Mark: I built weapon systems. Matter of fact, I analyzed what was needed.
+
+314
+00:31:06.250 --> 00:31:24.729
+Lehr, Mark: We'd go out and propose a system, then we would win the… win the proposal and build it, okay? And I got to program it, the system, internal electronics, to do what… what I said my simulation predicted it would be, okay? So that was my job.
+
+315
+00:31:26.480 --> 00:31:32.819
+Lehr, Mark: So, I had a friend, though, that worked at software companies, and he still does, by the way. He works at,
+
+316
+00:31:36.500 --> 00:31:39.029
+Lehr, Mark: Computer Science Corporation, something like that.
+
+317
+00:31:39.280 --> 00:31:40.190
+Lehr, Mark: Okay.
+
+318
+00:31:40.350 --> 00:31:46.279
+Lehr, Mark: So, Jim Cowan, I'll bring his name up, because he's a buddy of mine, he's still alive.
+
+319
+00:31:46.450 --> 00:31:50.499
+Lehr, Mark: Anyway, he wanted me to program. In other words, he…
+
+320
+00:31:50.730 --> 00:32:00.470
+Lehr, Mark: Always worked as a job shopper, which means he never really worked for a company. It was, he'd work under contract and he got much higher salary than I did because you know, they're job shoppers.
+
+321
+00:32:00.850 --> 00:32:09.320
+Lehr, Mark: So, I mean, he would make twice as much money per hour as I would, and he did very well doing this. And he always kept working, which is kind of interesting.
+
+322
+00:32:09.880 --> 00:32:18.280
+Lehr, Mark: So, but I wanted the security. So anyway, he had, he had his own little company and he goes, Mark, you know, I got so much work. Would you come and help me?
+
+323
+00:32:18.580 --> 00:32:25.330
+Lehr, Mark: And I said, no way, no, no, I've got… I mean, can you guarantee me? No, I can't guarantee anything, but we'll make a lot of money.
+
+324
+00:32:25.560 --> 00:32:26.260
+Lehr, Mark: Okay.
+
+325
+00:32:26.410 --> 00:32:31.379
+Lehr, Mark: So I'd like to bring this up, just to show you the kind of ideas he had.
+
+326
+00:32:32.160 --> 00:32:36.609
+Lehr, Mark: He goes, you know what, wouldn't it be a great thing if we developed
+
+327
+00:32:36.880 --> 00:32:46.889
+Lehr, Mark: You know, when the internet was coming out, he goes, wouldn't it be neat to develop a little interface for people when they got online to go and do like auctioning?
+
+328
+00:32:50.460 --> 00:32:53.750
+Lehr, Mark: And I go, no, Jim, that'll never work.
+
+329
+00:32:54.110 --> 00:32:57.570
+Lehr, Mark: Of course, you know what it is. It's eBay, right?
+
+330
+00:32:57.830 --> 00:33:01.299
+Lehr, Mark: So Jim had all these nifty ideas long before anybody else.
+
+331
+00:33:01.420 --> 00:33:07.159
+Lehr, Mark: And if I would have gone with him and done some of this stuff, who knows what could have happened, but I wanted to play it safe.
+
+332
+00:33:07.290 --> 00:33:19.699
+Lehr, Mark: Okay, you can do that. You kind of have to play it safe when you're a family. So anyway, so Jim came to me and he goes, Mark, I got so much work to do. Would you please do this? And he bugged me and bugged me and I said, okay, fine, I'll do it.
+
+333
+00:33:19.890 --> 00:33:23.579
+Lehr, Mark: So anyway, this is before I knew anything about C, by the way.
+
+334
+00:33:24.170 --> 00:33:31.509
+Lehr, Mark: So, you know, because I was programming on systems and we'd simulate in Fortran and then program it in assembly.
+
+335
+00:33:32.020 --> 00:33:35.630
+Lehr, Mark: So, anyway, he had this… Project.
+
+336
+00:33:35.920 --> 00:33:45.780
+Lehr, Mark: Because he was writing drivers all the time and things like that on PCs, and I… and he goes, you got to write this driver for me. So it's… anyway, it was for a 3COM501C board.
+
+337
+00:33:45.950 --> 00:33:50.849
+Lehr, Mark: And he wanted me to write the driver for it. And he had the specification. Specification was huge.
+
+338
+00:33:51.190 --> 00:33:59.350
+Lehr, Mark: And he goes, yeah, yeah, it says specification. You have to write to the specification. And so I'm sitting there going, and so what did it have?
+
+339
+00:34:00.100 --> 00:34:01.560
+Lehr, Mark: It had structures.
+
+340
+00:34:02.490 --> 00:34:04.289
+Lehr, Mark: As a matter of fact, it had
+
+341
+00:34:04.480 --> 00:34:10.229
+Lehr, Mark: References. Structures to references to structures to references to structures to references. 4D.
+
+342
+00:34:10.489 --> 00:34:11.360
+Lehr, Mark: Okay?
+
+343
+00:34:11.670 --> 00:34:17.379
+Lehr, Mark: So anyway, I didn't know anything about C, so number… so I had to learn C, and
+
+344
+00:34:18.030 --> 00:34:32.760
+Lehr, Mark: There were no books out. I wasn't a computer scientist, so I had to figure out how to do this and see. So this chapter is like a piece of cake for me because I had to learn it by trial and error way back when. Okay. Took me six months to write this driver.
+
+345
+00:34:33.409 --> 00:34:35.329
+Lehr, Mark: So it was a, it was a big…
+
+346
+00:34:35.670 --> 00:34:38.420
+Lehr, Mark: Driver for… it was a, you know, Ethernet board.
+
+347
+00:34:38.820 --> 00:34:41.720
+Lehr, Mark: So I wrote the driver, and then I gave it to him.
+
+348
+00:34:42.070 --> 00:34:51.310
+Lehr, Mark: And then I said, okay, Jim, when do I get the next one? Now that I've spent all this time writing this driver, okay, you were writing drivers all the time.
+
+349
+00:34:51.670 --> 00:34:53.619
+Lehr, Mark: When's my next piece of work?
+
+350
+00:34:53.830 --> 00:35:00.509
+Lehr, Mark: because, you know, I spent all this time learning this stuff, so I didn't make any money. I was, you know, if I made a buck an hour that'd be about the size of it.
+
+351
+00:35:00.690 --> 00:35:06.539
+Lehr, Mark: So I said, okay, where you make the money is when you already know something, then you get to apply it again. And he goes, well.
+
+352
+00:35:07.160 --> 00:35:13.840
+Lehr, Mark: He goes, we're not writing any drivers anymore. And I'm going, Why? And he goes, well…
+
+353
+00:35:14.540 --> 00:35:16.870
+Lehr, Mark: We used to ride a driver for every new board.
+
+354
+00:35:17.480 --> 00:35:22.099
+Lehr, Mark: But you see, The driver you wrote was to the specification.
+
+355
+00:35:23.070 --> 00:35:27.370
+Lehr, Mark: And I said, So what? He goes, Well, you wrote the driver of all drivers.
+
+356
+00:35:28.620 --> 00:35:31.739
+Lehr, Mark: And I go, what do you mean? He goes, well.
+
+357
+00:35:32.900 --> 00:35:37.890
+Lehr, Mark: Now, they'll create new boards, but it'll all have to comply to the specification.
+
+358
+00:35:38.060 --> 00:35:42.389
+Lehr, Mark: So, we'll never have to write one again. And I'm going, Why did you?
+
+359
+00:35:42.520 --> 00:35:45.999
+Lehr, Mark: Give it to me to write, then. He goes, because I couldn't figure it out.
+
+360
+00:35:49.030 --> 00:35:53.740
+Lehr, Mark: So… So I got paid a dollar an hour, If that.
+
+361
+00:35:53.860 --> 00:35:59.290
+Lehr, Mark: To write this darn driver, specifications, specifications, all structures
+
+362
+00:35:59.450 --> 00:36:05.370
+Lehr, Mark: Okay? All the most complicated… that's why when you guys have trouble with syntax, I'm sitting there going, I…
+
+363
+00:36:05.950 --> 00:36:08.600
+Lehr, Mark: Understand what your problems are.
+
+364
+00:36:08.720 --> 00:36:10.949
+Lehr, Mark: But I did that 30 plus years ago.
+
+365
+00:36:11.090 --> 00:36:16.079
+Lehr, Mark: And it's all embedded in my mind, so I have no trouble with All the complex syntax.
+
+366
+00:36:17.050 --> 00:36:22.719
+Lehr, Mark: However, I know you are going to have trouble with all this complex syntax.
+
+367
+00:36:22.950 --> 00:36:24.909
+Lehr, Mark: So you're just gonna have to get used to them.
+
+368
+00:36:25.830 --> 00:36:30.959
+Lehr, Mark: Okay? And you're gonna have to beat your head up against the wall to completely understand it.
+
+369
+00:36:31.170 --> 00:36:33.040
+Lehr, Mark: So…
+
+370
+00:36:34.060 --> 00:36:44.680
+Lehr, Mark: Okay, the dot operator. So here's all the columns. These are columns in this array that we're doing. This is the specification for the columns in this array.
+
+371
+00:36:44.780 --> 00:36:50.990
+Lehr, Mark: This is a row array. These are the headings. Okay? So you'll notice
+
+372
+00:36:51.260 --> 00:37:07.769
+Lehr, Mark: When we declare an employee, I don't have to declare 1, 2, 3, 4, 5 separate entities. They're already declared here, so when I go and use this, payroll employee, I can access the employee number, employee.emp number.
+
+373
+00:37:08.070 --> 00:37:17.850
+Lehr, Mark: And then… You know, employee.name, employee.hours, employee.payrate, employee.grosspay.
+
+374
+00:37:18.920 --> 00:37:22.800
+Lehr, Mark: So, all those are contained within one
+
+375
+00:37:23.400 --> 00:37:31.729
+Lehr, Mark: complex ADT. Now, what's nice about this is this one complex ADT, now you can take it wherever you go.
+
+376
+00:37:31.980 --> 00:37:36.169
+Lehr, Mark: You can pass one element in instead of six elements, okay?
+
+377
+00:37:38.890 --> 00:37:44.340
+Lehr, Mark: So, keep going down, huh?
+
+378
+00:37:44.690 --> 00:37:49.679
+Lehr, Mark: Oh, I have to share. You guys are gonna have to tell me to share. So, again.
+
+379
+00:37:56.820 --> 00:37:59.730
+Lehr, Mark: With respect to this code, we've declared
+
+380
+00:38:00.190 --> 00:38:05.889
+Lehr, Mark: And we're accessing each individual piece to that structure.
+
+381
+00:38:06.810 --> 00:38:11.589
+Lehr, Mark: It's capitalized, data type, lowercase for the variable.
+
+382
+00:38:12.450 --> 00:38:20.379
+Lehr, Mark: So we instantiate the data type here and then we go and fill it in with each CN.
+
+383
+00:38:21.470 --> 00:38:26.640
+Lehr, Mark: So, the name, the hours, the pay rate, the gross pay, And then, of course.
+
+384
+00:38:27.030 --> 00:38:30.980
+Lehr, Mark: There it is. Now, what that's made is your code a lot more complicated.
+
+385
+00:38:31.240 --> 00:38:38.459
+Lehr, Mark: But the reason why we make it more complicated is because the more complicated this is, the easier it is to use.
+
+386
+00:38:42.670 --> 00:38:52.700
+Lehr, Mark: So again, you can't output the data type. Now, can we overload these operators to output the whole data type? In other words, it's…
+
+387
+00:38:52.870 --> 00:39:03.809
+Lehr, Mark: do this instead of each individual? Yes, we can. When they say it won't work, well, that's not true. We're just not knowledgeable enough yet to overload that operator. But when we become a…
+
+388
+00:39:04.220 --> 00:39:10.620
+Lehr, Mark: knowledgeable enough, we will be able to do a C-Out bill, and it'll output the whole thing.
+
+389
+00:39:13.250 --> 00:39:29.389
+Lehr, Mark: If you you can't compare now, we could overload this operator to to do exactly what we want, but you don't know enough yet. So this is the way we equate the two the two pieces of data here to determine whether it's the same student.
+
+390
+00:39:32.480 --> 00:39:48.440
+Lehr, Mark: Okay, initializing a structure. Well, it looks very much like an array. Everybody see that? Looks… the only difference between a structure and an array is the structure can have different data types for each and every element in the array.
+
+391
+00:39:49.060 --> 00:39:57.579
+Lehr, Mark: Which you can't for an array. Array has to all be the same data type. But a structure can be an array with different data types. Okay?
+
+392
+00:39:58.710 --> 00:40:01.809
+Lehr, Mark: Obviously, the name is not the same as the GPA.
+
+393
+00:40:02.350 --> 00:40:04.770
+Lehr, Mark: So, yay rarely.
+
+394
+00:40:05.860 --> 00:40:17.230
+Lehr, Mark: However, initializing the structure is exactly the same rules as an array. You can't have any unknowns in between. In other words, you can't leave a blank.
+
+395
+00:40:17.340 --> 00:40:28.019
+Lehr, Mark: Comma, you know, comma, comma there, okay? That element needs to be there. You can fill it in up to a point, and it'll be okay, but you can't leave any blanks.
+
+396
+00:40:31.480 --> 00:40:37.000
+Lehr, Mark: So again, here's… You know, just like we would initiate an array.
+
+397
+00:40:41.080 --> 00:40:44.059
+Lehr, Mark: Now, again, I use 7 characters or less.
+
+398
+00:40:44.280 --> 00:40:52.010
+Lehr, Mark: Again, I don't know why… what… Why people must utilize .
+
+399
+00:40:54.150 --> 00:40:57.249
+Lehr, Mark: Horrendously long names. I've never understood that.
+
+400
+00:40:58.890 --> 00:41:05.310
+Lehr, Mark: It is… You would never do that in actual code. What you would do is you would
+
+401
+00:41:05.750 --> 00:41:07.240
+Lehr, Mark: Where you declared it.
+
+402
+00:41:07.450 --> 00:41:10.730
+Lehr, Mark: You would, in comments, Put the full thing.
+
+403
+00:41:11.260 --> 00:41:13.689
+Lehr, Mark: You know, you abbreviate in code.
+
+404
+00:41:14.600 --> 00:41:19.800
+Lehr, Mark: If you saw Halt and Catch Fire when they were writing the code, they made sure everything was abbreviated.
+
+405
+00:41:20.040 --> 00:41:24.999
+Lehr, Mark: Okay? When you actually have actual code out there in the real world, things are abbreviated.
+
+406
+00:41:25.590 --> 00:41:31.629
+Lehr, Mark: So… Okay, now here's the problem.
+
+407
+00:41:33.330 --> 00:41:36.430
+Lehr, Mark: a single object.
+
+408
+00:41:36.780 --> 00:41:40.960
+Lehr, Mark: Declared from a structure is an array.
+
+409
+00:41:41.940 --> 00:41:44.960
+Lehr, Mark: Now, what is an array of structures?
+
+410
+00:41:48.630 --> 00:41:49.830
+Lehr, Mark: It's a table.
+
+411
+00:41:52.100 --> 00:41:53.369
+Lehr, Mark: Everybody got that?
+
+412
+00:41:55.260 --> 00:42:03.279
+Lehr, Mark: An array of structures represents a table where the columns are names and the index associated with a row.
+
+413
+00:42:04.140 --> 00:42:07.200
+Lehr, Mark: So that was as an array of structures.
+
+414
+00:42:08.830 --> 00:42:16.339
+Lehr, Mark: So here… We would declare an array, static array, of 20 students.
+
+415
+00:42:17.700 --> 00:42:24.060
+Lehr, Mark: What would it hold? Well, it would hold all the characteristics or properties of each student.
+
+416
+00:42:24.810 --> 00:42:29.900
+Lehr, Mark: In row one, we might have the name of student one to be Jim.
+
+417
+00:42:30.330 --> 00:42:36.019
+Lehr, Mark: And then, of course, we might have his birthdate, or his address, or whatever on that row.
+
+418
+00:42:36.520 --> 00:42:43.200
+Lehr, Mark: Okay? The next row would be the next student, so an array of students would not only just have
+
+419
+00:42:43.340 --> 00:42:56.420
+Lehr, Mark: the 20 students there, but it would have the properties which would be extensive for each and every student. So we would access the row by the index and the column by the name.
+
+420
+00:42:56.750 --> 00:42:58.270
+Lehr, Mark: Does everybody see that?
+
+421
+00:42:59.180 --> 00:43:02.030
+Lehr, Mark: The row… The cone.
+
+422
+00:43:03.050 --> 00:43:09.480
+Lehr, Mark: And when we were back in two dimensional arrays, rows and columns were both indexes.
+
+423
+00:43:09.750 --> 00:43:19.240
+Lehr, Mark: But now, rows and columns for a structure, the row would be indexed with the number, and the column would be indexed with the name.
+
+424
+00:43:22.830 --> 00:43:32.899
+Lehr, Mark: Because you saw, well, I don't know whether I did that in front of you, but when we used two, when I went from using parallel one-dimensional arrays in terms to a two-dimensional.
+
+425
+00:43:33.070 --> 00:43:37.109
+Lehr, Mark: Well, then we had to remember what the… what each column was.
+
+426
+00:43:37.400 --> 00:43:44.480
+Lehr, Mark: when I, when I was coding it, because the column was numerical instead of by name.
+
+427
+00:43:49.060 --> 00:43:55.369
+Lehr, Mark: Okay, so structure, pay info, yeah, yeah, yeah. So here's an array of structures.
+
+428
+00:43:55.520 --> 00:44:00.970
+Lehr, Mark: So, this actually represents a 3x2 array, right?
+
+429
+00:44:03.290 --> 00:44:06.069
+Lehr, Mark: The number of workers would be the rows.
+
+430
+00:44:06.190 --> 00:44:10.159
+Lehr, Mark: And then, of course, the columns would be the hours and pay rate, and there's only two elements there.
+
+431
+00:44:10.270 --> 00:44:14.709
+Lehr, Mark: So, the size of this would be literally 6 cells.
+
+432
+00:44:17.210 --> 00:44:20.460
+Lehr, Mark: Three rows, Two columns.
+
+433
+00:44:22.750 --> 00:44:31.069
+Lehr, Mark: This would be, when you declared it, this would be a static array, of the worker structure.
+
+434
+00:44:34.970 --> 00:44:38.660
+Lehr, Mark: So, you go through the number of workers you've got.
+
+435
+00:44:39.170 --> 00:44:47.519
+Lehr, Mark: One thing nice, it doesn't matter how many, could be a billion, and the same 20 or 10 lines of code would be used.
+
+436
+00:44:50.580 --> 00:44:54.710
+Lehr, Mark: For input, and then obviously for output, you can do the same thing.
+
+437
+00:44:56.690 --> 00:44:57.860
+Lehr, Mark: So, anyway…
+
+438
+00:45:01.410 --> 00:45:08.040
+Lehr, Mark: What's interesting is… And here's something that's pretty interesting.
+
+439
+00:45:15.570 --> 00:45:21.920
+Lehr, Mark: In CIS1A, I create problems for spreadsheets.
+
+440
+00:45:23.600 --> 00:45:25.499
+Lehr, Mark: And when we go into 5,
+
+441
+00:45:25.640 --> 00:45:30.259
+Lehr, Mark: I'll take some of those same problems from CIS1A and then force you to write
+
+442
+00:45:30.960 --> 00:45:35.760
+Lehr, Mark: Code that we would write in an introductory programming class from spreadsheets.
+
+443
+00:45:36.540 --> 00:45:41.979
+Lehr, Mark: And then what we do from 5 to 17A is…
+
+444
+00:45:42.090 --> 00:45:52.239
+Lehr, Mark: I could have you do the same projects from 17… from 5 into 17A, the only difference being is that in there you use rudimentary type
+
+445
+00:45:52.410 --> 00:46:01.000
+Lehr, Mark: programming. But as you go along, you'd be changing your programming so that it uses more and more complex concepts.
+
+446
+00:46:01.560 --> 00:46:07.320
+Lehr, Mark: and do the same. Matter of fact, once I had
+
+447
+00:46:07.490 --> 00:46:16.459
+Lehr, Mark: My my dad back in early 2000, he inherited a bunch of money from my grandfather. Well, in the 19 end of 1990.
+
+448
+00:46:16.590 --> 00:46:26.319
+Lehr, Mark: So, what he was trying to do was he was trying to get rid of as much as he could, because he didn't want us to, when we inherited anything, he didn't want us to have to pay any taxes.
+
+449
+00:46:26.580 --> 00:46:31.070
+Lehr, Mark: And I said, Dad, You know, whatever the taxes are.
+
+450
+00:46:31.720 --> 00:46:41.349
+Lehr, Mark: We'll pay it, and there'll be a lot left, so don't worry about it. No, no, no, I don't want you to have to pay any taxes. So, anyway, he made sure he blew it at inning casinos.
+
+451
+00:46:41.750 --> 00:46:50.910
+Lehr, Mark: So he went to the inning casino there in Pechanga. I took him there and he goes, Mark, sit down and play with me, you know, play this game called Let It Ride.
+
+452
+00:46:51.210 --> 00:46:57.990
+Lehr, Mark: So I said, no, dad, I don't have any money. He goes, don't worry, I'll give you money. You can play. Okay, so I sat down.
+
+453
+00:46:58.290 --> 00:47:05.279
+Lehr, Mark: And I… Got the game, and I'm sitting and going, just how much is my dad losing?
+
+454
+00:47:05.650 --> 00:47:07.639
+Lehr, Mark: So what I did was, is…
+
+455
+00:47:07.780 --> 00:47:10.770
+Lehr, Mark: We wrote the program to simulate it.
+
+456
+00:47:10.980 --> 00:47:12.250
+Lehr, Mark: In 5?
+
+457
+00:47:12.480 --> 00:47:15.739
+Lehr, Mark: in 17A and in 18A. So.
+
+458
+00:47:16.170 --> 00:47:31.650
+Lehr, Mark: Just five being elementary C++. And then of course we got much more complicated in 17A because we wanted to use classes. And then 18A is just classes in Java. So we took the project and I did a class project where we wrote it.
+
+459
+00:47:32.430 --> 00:47:33.090
+Lehr, Mark: Okay.
+
+460
+00:47:33.710 --> 00:47:37.830
+Lehr, Mark: So we wrote the code in 5, and it took about 150 lines.
+
+461
+00:47:38.550 --> 00:47:46.939
+Lehr, Mark: We wrote the code in 1780. Same thing took about 750 lines, about five times the amount of lines you go. What should be let know?
+
+462
+00:47:47.060 --> 00:47:51.290
+Lehr, Mark: More. And you'll understand this when we start to write code in object-oriented
+
+463
+00:47:51.490 --> 00:47:56.750
+Lehr, Mark: program. And then we did it in 18A, and it took about the same 750 lines.
+
+464
+00:47:56.920 --> 00:47:58.240
+Lehr, Mark: And then we ran it.
+
+465
+00:47:58.370 --> 00:48:05.520
+Lehr, Mark: And you know what? It ran faster in the 5, because it was elementary code, versus the object oriented.
+
+466
+00:48:05.650 --> 00:48:12.519
+Lehr, Mark: So just using functional programming instead of object oriented, wiped it off the map. Okay, just letting you know.
+
+467
+00:48:14.380 --> 00:48:17.950
+Lehr, Mark: Now, the reason why we used object orientation is because
+
+468
+00:48:19.530 --> 00:48:24.350
+Lehr, Mark: It's much better organized. In other words, it's much easier to take something and mod it.
+
+469
+00:48:24.680 --> 00:48:30.809
+Lehr, Mark: Very complicated projects, and mod them in object-oriented than it is to do it in a functional setting.
+
+470
+00:48:31.750 --> 00:48:38.760
+Lehr, Mark: much easier. From… And the real reason why you want to do it is because there's fewer programmers needed.
+
+471
+00:48:40.090 --> 00:48:46.029
+Lehr, Mark: Just like with all the AI right now, there's fewer programmers that seems to be needed. You know, we keep shrinking the…
+
+472
+00:48:46.320 --> 00:48:47.680
+Lehr, Mark: However many now.
+
+473
+00:48:47.950 --> 00:48:54.720
+Lehr, Mark: So anyway, that's just to give you a clue. So, and then I… oh, I gotta tell you the results.
+
+474
+00:48:54.910 --> 00:48:59.020
+Lehr, Mark: So my dad was losing anywhere from $250,000 to $500,000 a year.
+
+475
+00:48:59.260 --> 00:49:04.140
+Lehr, Mark: because all I had to do was how many times, how many things, and how what he was betting.
+
+476
+00:49:04.480 --> 00:49:09.929
+Lehr, Mark: No problem, because he'd always say, oh, Mark, I won $20,000 today.
+
+477
+00:49:10.660 --> 00:49:17.979
+Lehr, Mark: And it it hurt me every time he did, because in order for him to win 20,000, he had to lose like 200,000.
+
+478
+00:49:18.650 --> 00:49:21.560
+Lehr, Mark: So… And that's just proven by the simulation.
+
+479
+00:49:21.910 --> 00:49:31.979
+Lehr, Mark: So whenever he told me he won another 20,000, I'd sit there and go, oh my God, out of that he lost 180,000. In other words, took 200,000 to win it. So anyway.
+
+480
+00:49:33.660 --> 00:49:37.229
+Lehr, Mark: But that's okay, because he left me a lot less to have to worry about.
+
+481
+00:49:39.210 --> 00:49:48.380
+Lehr, Mark: Anyway, let's go share the screen again. Oh, wait! There's some chat. Somebody wants to check. Where's my chat? Cancel?
+
+482
+00:49:49.430 --> 00:49:50.390
+Lehr, Mark: Oh.
+
+483
+00:49:53.070 --> 00:49:54.570
+Lehr, Mark: Well, that's not good.
+
+484
+00:49:57.230 --> 00:50:03.899
+Lehr, Mark: My, go back to full screen here, and hit the chat.
+
+485
+00:50:06.930 --> 00:50:11.330
+Lehr, Mark: And the casinos get even, or get… Here we go.
+
+486
+00:50:11.970 --> 00:50:16.119
+Lehr, Mark: Get even worse, it's always worse. Anyway, let's share the screen.
+
+487
+00:50:16.830 --> 00:50:22.850
+Lehr, Mark: And ensuring it pops down my… full screen. Okay.
+
+488
+00:50:24.530 --> 00:50:26.850
+Lehr, Mark: So, you guys can see the screen again, right?
+
+489
+00:50:26.990 --> 00:50:27.960
+Lehr, Mark: Okay.
+
+490
+00:50:28.430 --> 00:50:30.520
+Lehr, Mark: Now, here's what I was talking about.
+
+491
+00:50:30.760 --> 00:50:34.540
+Lehr, Mark: Remember I said that Jim's little project on the specification had
+
+492
+00:50:34.990 --> 00:50:41.859
+Lehr, Mark: pointers to structures to pointers to structures to pointers to structures, pointers to 4D. So there were 4 stars.
+
+493
+00:50:41.970 --> 00:50:48.590
+Lehr, Mark: that represented references to structures that were 4D, or… and it's just, if you think about it.
+
+494
+00:50:48.820 --> 00:50:56.690
+Lehr, Mark: It's just a… you can think of a date… now, it wasn't… this project wasn't related to a database, but that's kind of what it is, it's just…
+
+495
+00:50:57.080 --> 00:51:07.800
+Lehr, Mark: a pointer in a table that points to another table, and in that table was a pointer to point to another table, and on down the line. So those are what we call nested structures.
+
+496
+00:51:08.320 --> 00:51:09.250
+Lehr, Mark: Okay?
+
+497
+00:51:12.550 --> 00:51:19.229
+Lehr, Mark: So, what's a nested structure? Well, let's say you have a student table with a bunch of information.
+
+498
+00:51:20.010 --> 00:51:31.290
+Lehr, Mark: But you don't want to put in their personal information in that table. So you would create another table for personal information. Here's another thing that you would do. For instance.
+
+499
+00:51:31.650 --> 00:51:38.589
+Lehr, Mark: Let's say you guys are, you know, when you had to sign up for RCC, didn't you have to put in emergency contacts?
+
+500
+00:51:39.210 --> 00:51:43.840
+Lehr, Mark: Well, here's what I would do. I would make a table for emergency contacts.
+
+501
+00:51:44.080 --> 00:51:47.669
+Lehr, Mark: And then I simply put a pointer in it for… from the student table.
+
+502
+00:51:47.820 --> 00:51:55.430
+Lehr, Mark: The student table would have a pointer to the emergency contact, and you might say, but you see, you can have more than one emergency contact.
+
+503
+00:51:55.700 --> 00:52:00.980
+Lehr, Mark: So I can put in an array of pointers to point to all the emergency contacts you have.
+
+504
+00:52:01.200 --> 00:52:05.339
+Lehr, Mark: So, it makes it… It makes it really super simple.
+
+505
+00:52:05.850 --> 00:52:06.750
+Lehr, Mark: Okay?
+
+506
+00:52:13.300 --> 00:52:16.590
+Lehr, Mark: So, so here…
+
+507
+00:52:16.870 --> 00:52:25.090
+Lehr, Mark: This personal information data, you can stick right in there. And so now what you have is the dot dot.
+
+508
+00:52:25.940 --> 00:52:34.550
+Lehr, Mark: And so, what the S.P data, that would be the, the personal information data.
+
+509
+00:52:34.690 --> 00:52:48.130
+Lehr, Mark: That's what's in that table, there's a name and a city. So if we go back to here, remember there's name, city, and the address, if we want. So if we went to here, the PDATA, then we can go back to the structure with the name, the address, and city.
+
+510
+00:52:48.490 --> 00:52:50.220
+Lehr, Mark: So that would be the dot dot.
+
+511
+00:52:56.200 --> 00:52:57.110
+Lehr, Mark: Okay.
+
+512
+00:52:59.450 --> 00:53:07.870
+Lehr, Mark: Now, what we typically do when it gets too many dots, I would go, like,
+
+513
+00:53:08.280 --> 00:53:12.150
+Lehr, Mark: P data, in other words, that table, Here.
+
+514
+00:53:13.240 --> 00:53:29.630
+Lehr, Mark: the personal info data, I would put in personal info after this would be S.P data, so that I wouldn't have to carry the dot dot dot dot dot, you know, I'd put in subposition. I do that in Python all the time when I'm working with
+
+515
+00:53:32.390 --> 00:53:38.510
+Lehr, Mark: Python uses Jason, which is Javascript. Javascript is really interesting.
+
+516
+00:53:39.160 --> 00:53:41.550
+Lehr, Mark: We used to have XML.
+
+517
+00:53:41.980 --> 00:53:46.660
+Lehr, Mark: That everybody thought was gonna go to fantastic places.
+
+518
+00:53:47.150 --> 00:53:53.460
+Lehr, Mark: And what happened was, javaScript.
+
+519
+00:53:56.230 --> 00:54:03.600
+Lehr, Mark: became like a standard. In other words, the way to represent complex objects inside of objects inside of objects.
+
+520
+00:54:03.780 --> 00:54:07.940
+Lehr, Mark: Instead of using XML, everybody zeroed in on JavaScript.
+
+521
+00:54:08.520 --> 00:54:11.160
+Lehr, Mark: So here's what's interesting about that.
+
+522
+00:54:11.810 --> 00:54:16.290
+Lehr, Mark: These structures are related to, Databases.
+
+523
+00:54:16.440 --> 00:54:17.180
+Lehr, Mark: Okay.
+
+524
+00:54:20.280 --> 00:54:23.520
+Lehr, Mark: A simpler way of writing,
+
+525
+00:54:24.460 --> 00:54:29.949
+Lehr, Mark: objects inside of objects inside of objects, JavaScript came up with a standard.
+
+526
+00:54:31.070 --> 00:54:37.569
+Lehr, Mark: So, that went from SQL databases to non-SQL databases.
+
+527
+00:54:38.620 --> 00:54:44.640
+Lehr, Mark: And what's interesting about that is now there's two types of databases that you can Learn.
+
+528
+00:54:45.110 --> 00:54:57.280
+Lehr, Mark: One is the SQL type, which is related to structures, and one is the JavaScript object notation type, which is related to things like MongoDB and other databases.
+
+529
+00:54:57.880 --> 00:55:02.969
+Lehr, Mark: And the reason why I bring these two up, which is really kind of interesting, is somehow.
+
+530
+00:55:03.420 --> 00:55:11.650
+Lehr, Mark: JavaScript became the standard for every non-SQL Record keeping out there.
+
+531
+00:55:12.720 --> 00:55:19.779
+Lehr, Mark: So… When I went to Python, and I had to look at Python and how to retrieve
+
+532
+00:55:20.610 --> 00:55:27.730
+Lehr, Mark: Market information down from all sorts of stuff, everybody puts it in JavaScript. So Python, every language.
+
+533
+00:55:27.940 --> 00:55:32.700
+Lehr, Mark: has a JavaScript library that you can bring in and utilize JavaScript notation in.
+
+534
+00:55:32.810 --> 00:55:40.480
+Lehr, Mark: It's really interesting how JavaScript became the standard For storing huge amounts of.
+
+535
+00:55:42.580 --> 00:55:45.010
+Lehr, Mark: information like this. In other words.
+
+536
+00:55:45.690 --> 00:55:54.380
+Lehr, Mark: Aggregates inside of aggregates inside of aggregates. It's a very compact way to store a massive amount of information.
+
+537
+00:55:54.650 --> 00:55:58.960
+Lehr, Mark: So, anyway, kind of interesting.
+
+538
+00:56:02.530 --> 00:56:03.860
+Lehr, Mark: Oh, let's go back to this.
+
+539
+00:56:08.130 --> 00:56:13.480
+Lehr, Mark: And I don't know how you learn all this with AI is doing all the stuff now. It's really…
+
+540
+00:56:15.940 --> 00:56:16.710
+Lehr, Mark: No.
+
+541
+00:56:18.120 --> 00:56:19.000
+Lehr, Mark: So…
+
+542
+00:56:19.710 --> 00:56:20.580
+abraham murillo: Professor.
+
+543
+00:56:20.580 --> 00:56:21.170
+Lehr, Mark: Okay.
+
+544
+00:56:21.170 --> 00:56:31.699
+abraham murillo: Don't mean to cut you off, those, databases that you were talking about, are the ones we're working on, are they similar? Are they also a relational ship?
+
+545
+00:56:32.360 --> 00:56:32.930
+Lehr, Mark: Well.
+
+546
+00:56:32.930 --> 00:56:33.280
+abraham murillo: licenses.
+
+547
+00:56:33.280 --> 00:56:37.850
+Lehr, Mark: When we go back to here, In other words.
+
+548
+00:56:38.310 --> 00:56:47.760
+Lehr, Mark: This type of syntax, this, yeah, these are all… in other words, this is a relational database where this is a pointer into another table.
+
+549
+00:56:48.330 --> 00:57:00.280
+Lehr, Mark: So they're not separate tables. Each one of these structures represents a table. But what a relational database is, if one of the structures contains a reference to another table.
+
+550
+00:57:00.520 --> 00:57:06.799
+Lehr, Mark: And if you look at modern-day databases, they all… matter of fact, they'll all relate to each other.
+
+551
+00:57:08.050 --> 00:57:08.820
+Lehr, Mark: Okay.
+
+552
+00:57:09.210 --> 00:57:12.160
+Lehr, Mark: So it's kind of, kind of interesting,
+
+553
+00:57:12.380 --> 00:57:15.519
+Lehr, Mark: And it makes the syntax for SQL pretty simple, too.
+
+554
+00:57:16.210 --> 00:57:21.929
+Lehr, Mark: So, anyway… Let's get down to…
+
+555
+00:57:22.630 --> 00:57:25.500
+Lehr, Mark: Structures is function elements, function arguments.
+
+556
+00:57:25.810 --> 00:57:29.630
+Lehr, Mark: Now, here's the interesting thing about structures.
+
+557
+00:57:31.970 --> 00:57:34.730
+Lehr, Mark: When we have primitive data types.
+
+558
+00:57:35.040 --> 00:57:38.159
+Lehr, Mark: We can pass by copy or by reference.
+
+559
+00:57:38.630 --> 00:57:42.499
+Lehr, Mark: And it's always faster to pass by copy.
+
+560
+00:57:43.150 --> 00:57:44.890
+Lehr, Mark: With a primitive data type.
+
+561
+00:57:45.160 --> 00:57:47.910
+Lehr, Mark: Because it's a one-off, it's a single element.
+
+562
+00:57:49.330 --> 00:58:00.399
+Lehr, Mark: Now, by the way, I didn't know this. I actually had to do the timing analysis to figure it out, and then I had to go back to the assembly to make sense out of it, because I thought it was always, always faster to pass by reference. It's not.
+
+563
+00:58:00.760 --> 00:58:05.649
+Lehr, Mark: If you have single, primitive data types, Pass it by copy.
+
+564
+00:58:06.440 --> 00:58:09.000
+Lehr, Mark: It'll be faster every time, okay?
+
+565
+00:58:10.630 --> 00:58:19.450
+Lehr, Mark: Okay, so there's that. However, you have no choice if you want to change that primitive data type in going into a function. Then you have to pass it by reference.
+
+566
+00:58:20.400 --> 00:58:23.829
+Lehr, Mark: However, now, structure is an interesting animal.
+
+567
+00:58:24.760 --> 00:58:27.940
+Lehr, Mark: Because here's the problem with structures, it's more than one element.
+
+568
+00:58:29.710 --> 00:58:39.840
+Lehr, Mark: So now, passing it by copy, you gotta copy a lot of stuff in, so it's gonna be slower. So if you pass in a structure by copy.
+
+569
+00:58:40.290 --> 00:58:43.009
+Lehr, Mark: In other words, pass it by value. It'll be slow.
+
+570
+00:58:43.690 --> 00:58:52.220
+Lehr, Mark: So here's the thing. When you pass a structure, usually you pass it by reference, regardless of whether you're going to change the values in the structure or not.
+
+571
+00:58:52.530 --> 00:58:53.410
+Lehr, Mark: Okay.
+
+572
+00:58:53.570 --> 00:58:55.609
+Lehr, Mark: So, pass it by reference.
+
+573
+00:58:55.940 --> 00:59:07.270
+Lehr, Mark: So a structure is a function argument. Yeah, pass it by reference. If you don't change it, make it a const. If you do change it, obviously you can't make it a const. So can you pass?
+
+574
+00:59:07.540 --> 00:59:16.629
+Lehr, Mark: Individual values from a structure, sure, that's like packing a single variable. You know, what's the big deal? However, look.
+
+575
+00:59:16.780 --> 00:59:19.100
+Lehr, Mark: You can pass in the whole structure.
+
+576
+00:59:21.230 --> 00:59:27.519
+Lehr, Mark: If you're going to use more than a couple elements from the structure, then pass in the structure by reference.
+
+577
+00:59:28.020 --> 00:59:29.339
+Lehr, Mark: If you're gonna only…
+
+578
+00:59:29.480 --> 00:59:41.689
+Lehr, Mark: have to modify one thing, then pass in the structural element by reference, the single parameter, okay, if you're going to change it. If you're going to leave it, just pass it in by value, which is passed by copy.
+
+579
+00:59:43.350 --> 00:59:44.989
+Lehr, Mark: So, here's the structure.
+
+580
+00:59:45.450 --> 00:59:48.960
+Lehr, Mark: Here's a function. It's passing it in by…
+
+581
+00:59:49.110 --> 00:59:52.220
+Lehr, Mark: Copy, or by value. That's expensive.
+
+582
+00:59:52.880 --> 00:59:54.469
+Lehr, Mark: It's not that it won't work.
+
+583
+00:59:55.100 --> 00:59:57.039
+Lehr, Mark: It's just expensive.
+
+584
+00:59:58.000 --> 01:00:01.729
+Lehr, Mark: and it's unprotected. If this thing just does a C out.
+
+585
+01:00:02.030 --> 01:00:06.780
+Lehr, Mark: Then, put a const here. Const… Inventory item P.
+
+586
+01:00:11.120 --> 01:00:18.250
+Lehr, Mark: So… You know, and then, of course, put an ampersand by reference, because, again, it's… it'll be faster.
+
+587
+01:00:19.100 --> 01:00:33.120
+Lehr, Mark: So, let's see, using a value parameter for structure to slow down and program waste banks, yes. Using a reference parameter, right on. Use a const if you're not changing it. Yea, verily, that is the appropriate way to pass that structure.
+
+588
+01:00:33.500 --> 01:00:34.200
+Lehr, Mark: Okay.
+
+589
+01:00:35.060 --> 01:00:42.520
+Lehr, Mark: Now, with… With arrays, they don't give you any option. You have to pass by reference, because they're pointers.
+
+590
+01:00:42.690 --> 01:00:45.669
+Lehr, Mark: You can… Passed by reference, period.
+
+591
+01:00:46.000 --> 01:00:48.010
+Lehr, Mark: You're passing the address right in.
+
+592
+01:00:48.620 --> 01:00:56.719
+Lehr, Mark: They don't give you an option when it comes… so you can't screw it up with respect to arrays, but you can screw it up with respect to structures.
+
+593
+01:00:59.900 --> 01:01:04.510
+Lehr, Mark: This is why I've been called in, you know, as a consultant sometimes.
+
+594
+01:01:04.900 --> 01:01:10.520
+Lehr, Mark: They'll call me and have me look at code, and they go, can you improve it? Can you, you know, like, speed it up, or do whatever?
+
+595
+01:01:10.910 --> 01:01:12.030
+Lehr, Mark: Piece of cake!
+
+596
+01:01:14.200 --> 01:01:16.150
+Lehr, Mark: Just go in and look at this kind of stuff.
+
+597
+01:01:23.180 --> 01:01:25.980
+Lehr, Mark: Returning a structure from a function. Again.
+
+598
+01:01:26.640 --> 01:01:29.700
+Lehr, Mark: When it returns it, it's going to be copying this stuff in.
+
+599
+01:01:30.060 --> 01:01:38.820
+Lehr, Mark: So, you've got to decide when you want to return something, whether you're going to pass it, you know, pass it back by copying it, or pass it back by,
+
+600
+01:01:38.930 --> 01:01:39.880
+Lehr, Mark: Reference.
+
+601
+01:01:41.730 --> 01:01:43.059
+Lehr, Mark: Will this work?
+
+602
+01:01:43.520 --> 01:01:45.739
+Lehr, Mark: Creating a temp student.
+
+603
+01:01:46.010 --> 01:01:48.980
+Lehr, Mark: Filling it in, and returning. Yes, of course.
+
+604
+01:01:49.140 --> 01:01:50.220
+Lehr, Mark: That will work.
+
+605
+01:01:50.910 --> 01:01:53.129
+Lehr, Mark: Is it slow? Yes, of course.
+
+606
+01:01:55.490 --> 01:01:57.890
+Lehr, Mark: Is there a better way? Yes, of course.
+
+607
+01:01:58.280 --> 01:02:01.019
+Lehr, Mark: By the way, in here, I don't… okay.
+
+608
+01:02:03.320 --> 01:02:06.580
+Lehr, Mark: in here, I only care if it works.
+
+609
+01:02:07.240 --> 01:02:09.590
+Lehr, Mark: I'm not going to check you on…
+
+610
+01:02:10.840 --> 01:02:16.689
+Lehr, Mark: you know, speed or anything else. I'm just happy that you got the idea, and that it's working.
+
+611
+01:02:17.010 --> 01:02:17.860
+Lehr, Mark: Okay.
+
+612
+01:02:18.850 --> 01:02:19.660
+Lehr, Mark: So…
+
+613
+01:02:28.160 --> 01:02:29.780
+Lehr, Mark: So, let's see here…
+
+614
+01:02:33.090 --> 01:02:38.399
+Lehr, Mark: Program user function, yada, yada, yada. Const double pi 3…
+
+615
+01:02:38.730 --> 01:02:42.160
+Lehr, Mark: 1, 2, 3, 4, 5, 6.
+
+616
+01:02:45.800 --> 01:02:48.809
+Lehr, Mark: This has 6 significant digits in it, right?
+
+617
+01:02:49.600 --> 01:02:51.310
+Lehr, Mark: But we're using a double.
+
+618
+01:02:52.780 --> 01:02:58.850
+Lehr, Mark: Well, a float is 7 significant digits. Why are you using something twice this size?
+
+619
+01:02:59.570 --> 01:03:01.210
+Lehr, Mark: I'm just going to ask the question.
+
+620
+01:03:01.590 --> 01:03:03.619
+Lehr, Mark: Little crap like that, I will…
+
+621
+01:03:04.000 --> 01:03:09.560
+Lehr, Mark: Because I don't want you to use doubles to start out with, but if you're going to use doubles like this, you should be slapped.
+
+622
+01:03:09.920 --> 01:03:15.300
+Lehr, Mark: Okay. Used to be slapped down for using it. If you want, here's what I would do.
+
+623
+01:03:15.710 --> 01:03:18.670
+Lehr, Mark: 4 times the arctangent of 1.
+
+624
+01:03:19.260 --> 01:03:25.489
+Lehr, Mark: Then you would have 16 significant digits there. Everybody see that you're pulling in a double.
+
+625
+01:03:25.780 --> 01:03:28.880
+Lehr, Mark: You know, double library, the CMAQ library is doubled.
+
+626
+01:03:29.240 --> 01:03:31.359
+Lehr, Mark: So, at least, at least
+
+627
+01:03:31.590 --> 01:03:37.039
+Lehr, Mark: I could go ahead and, you know, say, hey, at least you used the right thing. And then look at this.
+
+628
+01:03:37.530 --> 01:03:47.139
+Lehr, Mark: You know, I hate Gaddis because, well, I don't hate him, but I kind of like using him so I can comment just how dumb he's using code.
+
+629
+01:03:47.640 --> 01:03:48.880
+Lehr, Mark: Here's the key.
+
+630
+01:03:50.360 --> 01:03:55.919
+Lehr, Mark: He's got the radius, he's got the diameter, and he has the area. There's 3 pieces there, right?
+
+631
+01:03:56.910 --> 01:04:00.919
+Lehr, Mark: But any one of which of these will define what a circle is.
+
+632
+01:04:03.960 --> 01:04:07.159
+Lehr, Mark: So… Let me illustrate.
+
+633
+01:04:31.080 --> 01:04:38.259
+Lehr, Mark: area pi r squared right equals pi D over 2.
+
+634
+01:04:38.660 --> 01:04:39.629
+Lehr, Mark: Where is it?
+
+635
+01:04:43.130 --> 01:04:43.980
+Lehr, Mark: Right?
+
+636
+01:04:45.350 --> 01:04:52.059
+Lehr, Mark: So, anyway, we know that the area is equal to R squared, or the area is equal to
+
+637
+01:04:52.470 --> 01:04:55.089
+Lehr, Mark: B over 2 squared right?
+
+638
+01:04:55.570 --> 01:05:02.430
+Lehr, Mark: So, if I have an R, I can calculate what D and A is
+
+639
+01:05:02.990 --> 01:05:07.639
+Lehr, Mark: If I have V, I can calculate what R and A is.
+
+640
+01:05:08.150 --> 01:05:12.820
+Lehr, Mark: If I have the area, I can calculate with DENR.
+
+641
+01:05:14.330 --> 01:05:20.489
+Lehr, Mark: R. Does everybody see? All I need is one, and I can define what the other two are.
+
+642
+01:05:23.960 --> 01:05:24.820
+Lehr, Mark: Now.
+
+643
+01:05:25.180 --> 01:05:27.230
+Lehr, Mark: The rule is kind of this.
+
+644
+01:05:29.800 --> 01:05:31.479
+Lehr, Mark: We go back to Sharon.
+
+645
+01:05:36.840 --> 01:05:48.400
+Lehr, Mark: You shall never… create… an entity that has… orthogonal properties.
+
+646
+01:05:48.950 --> 01:06:05.629
+Lehr, Mark: Or unorthogonal. In other words, orthogonality means they have to be totally different properties, have to be unrelated to each other. But these are all related to each other. So, when you do a store on here, if you change one parameter, you gotta calculate the other two.
+
+647
+01:06:06.440 --> 01:06:09.680
+Lehr, Mark: You can't just change one parameter, you have to change them all.
+
+648
+01:06:10.170 --> 01:06:18.829
+Lehr, Mark: So you would never have this circle with these properties, because the properties are not independent of each other.
+
+649
+01:06:19.010 --> 01:06:25.420
+Lehr, Mark: And this is true in a database. You have properties that are unique, that you can calculate from.
+
+650
+01:06:26.220 --> 01:06:29.570
+Lehr, Mark: Okay, calculate the other properties from without storing them.
+
+651
+01:06:31.840 --> 01:06:33.970
+Lehr, Mark: Matter of fact, it's… it's…
+
+652
+01:06:34.580 --> 01:06:41.060
+Lehr, Mark: Kind of like the law of databases, you go through and create normal forms, and this is called normal forms.
+
+653
+01:06:41.470 --> 01:06:51.049
+Lehr, Mark: You only store what is necessary. You can compute the rest afterwards, just like we would never store your GPA.
+
+654
+01:06:51.270 --> 01:06:57.039
+Lehr, Mark: Because if you took another class, what would we have to do after adding the newest grade?
+
+655
+01:06:58.290 --> 01:07:01.320
+Lehr, Mark: We'd have to recalculate your GPA.
+
+656
+01:07:02.250 --> 01:07:12.580
+Lehr, Mark: Now, if you want your GPA, you go into the database and query it to get your GPA back. So what does it have to do? It just goes through and takes all the things that are stored and calculates it.
+
+657
+01:07:15.720 --> 01:07:21.580
+Lehr, Mark: So they have to be orthogonal, and these guys are all interrelated to each other, so you'd never do this.
+
+658
+01:07:22.700 --> 01:07:28.610
+Lehr, Mark: So, anyway… Syntactically,
+
+659
+01:07:29.530 --> 01:07:31.420
+Lehr, Mark: Get data about the circle.
+
+660
+01:07:32.090 --> 01:07:34.360
+Lehr, Mark: Get info. I don't know what that means.
+
+661
+01:07:37.170 --> 01:07:41.620
+Lehr, Mark: Oh, that's just calling a function. So this getInfo function.
+
+662
+01:07:41.820 --> 01:07:52.360
+Lehr, Mark: creates a circle, and then you fill it in and return it. So, okay. GetInfo fills all the information in, except it doesn't fill in the area. See what I mean?
+
+663
+01:07:52.490 --> 01:07:58.049
+Lehr, Mark: They put in the radius, Well, they ask for the diameter, they calculate the radius.
+
+664
+01:07:58.210 --> 01:08:05.119
+Lehr, Mark: And then they come back, and then they calculate the… why didn't they do that inside the circle? What, this get info function?
+
+665
+01:08:05.280 --> 01:08:08.219
+Lehr, Mark: Why didn't they do that inside the get info function?
+
+666
+01:08:08.360 --> 01:08:11.870
+Lehr, Mark: They had to do it to the radius because they brought in the diameter.
+
+667
+01:08:12.580 --> 01:08:17.540
+Lehr, Mark: I… This program makes no sense to me. I mean, it works, don't get me wrong.
+
+668
+01:08:17.930 --> 01:08:25.640
+Lehr, Mark: But the Get Info might as well have filled in both the radius as well as the area, okay? So…
+
+669
+01:08:26.140 --> 01:08:33.600
+Lehr, Mark: The get info should have asked for the diameter and then simply calculated both.
+
+670
+01:08:35.430 --> 01:08:39.990
+Lehr, Mark: the radius and the area. I don't know why they did it.
+
+671
+01:08:40.109 --> 01:08:42.970
+Lehr, Mark: After the fact. So they got the info.
+
+672
+01:08:43.160 --> 01:08:51.830
+Lehr, Mark: Filled in one of the, you know, asked for one of the parameters, calculated the second parameter, and then outside the function, they calculate the third parameter.
+
+673
+01:08:52.850 --> 01:08:55.159
+Lehr, Mark: Weird. Weird way to code.
+
+674
+01:09:00.490 --> 01:09:02.609
+Lehr, Mark: And again, I'm talking, and…
+
+675
+01:09:03.140 --> 01:09:08.410
+Lehr, Mark: And I don't know how many of you are actually understanding what I'm saying, but,
+
+676
+01:09:10.279 --> 01:09:12.800
+Lehr, Mark: Somewhere along the way, you'll… you'll get it.
+
+677
+01:09:13.050 --> 01:09:13.920
+Lehr, Mark: Okay.
+
+678
+01:09:18.430 --> 01:09:20.820
+Lehr, Mark: And we're done. I don't want to talk… now…
+
+679
+01:09:21.189 --> 01:09:24.079
+Lehr, Mark: This is… this is some of the syntax.
+
+680
+01:09:24.520 --> 01:09:25.759
+Lehr, Mark: Now, guess what?
+
+681
+01:09:27.140 --> 01:09:29.519
+Lehr, Mark: Now we're going to go to the pointer syntax.
+
+682
+01:09:30.010 --> 01:09:33.740
+Lehr, Mark: And it's just as bad or worse than the erasing tax.
+
+683
+01:09:33.840 --> 01:09:34.710
+Lehr, Mark: Okay?
+
+684
+01:09:35.430 --> 01:09:39.759
+Lehr, Mark: So, matter of fact, I was… Tell you it's probably worse.
+
+685
+01:09:39.939 --> 01:09:52.529
+Lehr, Mark: than the array syntax. This is like, I said, this notation and syntax that you're having to do between Chapter 9 and Chapter 11 is pretty pretty newbieish.
+
+686
+01:09:53.149 --> 01:09:59.439
+Lehr, Mark: It's like you're either going to get it or you're not, and you're going to only get it by practicing it and using it.
+
+687
+01:10:00.430 --> 01:10:01.340
+Lehr, Mark: Okay.
+
+688
+01:10:02.850 --> 01:10:07.150
+Lehr, Mark: By the way, it doesn't do you any good to just have somebody else
+
+689
+01:10:07.850 --> 01:10:10.429
+Lehr, Mark: You know, pull it in from somewhere and use it.
+
+690
+01:10:11.090 --> 01:10:17.579
+Lehr, Mark: You get… Okay, here's something else, too. We are going to have a programming competition next month.
+
+691
+01:10:18.830 --> 01:10:20.320
+Lehr, Mark: On November 7th.
+
+692
+01:10:20.760 --> 01:10:26.590
+Lehr, Mark: Those of you who… you should go to the computer club and get signed up.
+
+693
+01:10:26.700 --> 01:10:29.939
+Lehr, Mark: You guys need to be able to practice programming.
+
+694
+01:10:31.580 --> 01:10:33.430
+Lehr, Mark: Without any references.
+
+695
+01:10:34.340 --> 01:10:36.200
+Lehr, Mark: Well, you're allowed to bring in a book.
+
+696
+01:10:36.940 --> 01:10:37.860
+Lehr, Mark: Okay.
+
+697
+01:10:38.410 --> 01:10:39.609
+Lehr, Mark: But that's it.
+
+698
+01:10:39.890 --> 01:10:42.960
+Lehr, Mark: So, you should do it just as a challenge to yourself.
+
+699
+01:10:43.950 --> 01:10:46.070
+Lehr, Mark: Go to the club, sign up.
+
+700
+01:10:46.900 --> 01:10:49.940
+Lehr, Mark: I rate and rank people and put them into teams.
+
+701
+01:10:50.750 --> 01:10:56.310
+Lehr, Mark: So, if you guys have had a lot of experience, 17C, doing all sorts of stuff, put you in 1T.
+
+702
+01:10:56.420 --> 01:10:59.920
+Lehr, Mark: You know, if you've had experience up to 17A, I'll put you in another team.
+
+703
+01:11:00.030 --> 01:11:03.929
+Lehr, Mark: If you have experience up to 5, I put you in another team. If you have
+
+704
+01:11:04.900 --> 01:11:09.229
+Lehr, Mark: If you have any less than that, less than 5, well…
+
+705
+01:11:09.520 --> 01:11:18.169
+Lehr, Mark: There are some people who still program very well, because I think we can use Python and Java in the programming competition as well as C.
+
+706
+01:11:18.430 --> 01:11:25.289
+Lehr, Mark: So be there and be square. Did I already post this up as one of the announcements? I should.
+
+707
+01:11:26.160 --> 01:11:30.600
+Lehr, Mark: I posted when the computer clubs were, right?
+
+708
+01:11:31.140 --> 01:11:36.869
+Lehr, Mark: So, anyway… We're done, I'm out of here, and of course it went out of full screen mode.
+
+709
+01:11:37.210 --> 01:11:39.209
+Lehr, Mark: For me, which is nothing new.
+
+710
+01:11:40.140 --> 01:11:42.950
+Lehr, Mark: So, we're gonna stop it, say…
+
+711
+01:11:43.660 --> 01:11:48.950
+Lehr, Mark: Howdy doody to all of you. We will see all of you, Wednesday.
+
