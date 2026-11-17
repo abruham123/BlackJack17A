@@ -8,6 +8,16 @@ alwaysApply: false
 
 Use this when editing `*.cpp` / `*.h` for Abraham’s 17A Blackjack work. Match **Dr. Mark E. Lehr** style from course samples. Deliver **outline + rough draft + overview** — not a finished game.
 
+## First version + ownership tree
+
+- Start from **`Project/main.cpp`** (v1 card helpers: `suit` / `face` / `value`). Grow it; do not discard those helpers.
+- Target ownership (Abraham’s flowchart): **`main` owns every pointer** and frees before exit.
+  - **GameConfig** — plain struct; also binary file
+  - **Deck** — heap struct → Card array (`52 × nDecks`)
+  - **Dealer** — one struct, one Hand → that hand’s Card array
+  - **Player** — one struct → Hand array on heap (row 0 = original, later rows = splits; each Hand has its own Card array)
+  - **PlayerRecord** — heap array; also binary record file
+
 ## Professor style (match exactly)
 
 - Banner: File / Author / Created on / Purpose.
