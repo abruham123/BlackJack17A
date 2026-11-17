@@ -1,0 +1,224 @@
+---
+description: Blackjack rules, basic strategy, and C++ style for this course
+globs: "**/*.cpp","**/*.h"
+alwaysApply: false
+---
+
+# Blackjack + Chapters 9–12 C++ (outline / draft only)
+
+Use this when editing `*.cpp` / `*.h` for Abraham’s 17A Blackjack work. Match **Dr. Mark E. Lehr** style from course samples. Deliver **outline + rough draft + overview** — not a finished game.
+
+## Professor style (match exactly)
+
+- Banner: File / Author / Created on / Purpose.
+- Order: System Libraries → User Libraries → **Global Constants Only** → Function Prototypes → `main` → definitions.
+- `using namespace std;`; prototypes above `main`; `//Exit stage right` before `return 0;`.
+- C-style `struct` in `.h` with include guards; tags often uppercase (`Card`, `Hand`).
+- Heap: `new` / `new[]` and matching `delete` / `delete[]` via `destroy` / `rcvrMem` / `cleanup`.
+- Pass: fill sizes with `int &`; read-only with `const T *` or `const T &`; mutate with pointer or non-const reference.
+- Strings: both `char[]` (C-string) and `std::string`. Binary: `fstream` + `ios::binary` + `.read()` / `.write()` + `reinterpret_cast<char*>`.
+
+**Assumptions if unclear:** short abbrev names (`prntAry`, `wrtBin`); static/const strategy tables OK; one dealer-17 constant; avoid smart pointers unless asked.
+
+## Required course topics (map features here)
+
+1. **Dynamic `new`/`delete`** — shoe, hands, jagged arrays of cards; free everything.
+2. **C-style `struct` pass/return** — by value, by reference, by pointer.
+3. **Pointer mechanics** — arrays, arithmetic/notation, arrays of structures via offsets.
+4. **C-string + `std::string`** — names, menus, file names.
+5. **Binary files** — `ios::binary` record save/load for bankroll / configs / rounds.
+
+## Blackjack rules
+
+- **Goal:** beat dealer without exceeding 21. 2–10 face; J/Q/K = 10; Ace = 1 or 11. **Soft hand** = Ace counted as 11 without busting.
+- **Flow:** bet → deal two each → player (hit / stand / double / split) → dealer reveals hole, draws to 17 → compare. Natural blackjack pays **3:2**. **Push** = tie.
+- Dealer 17: one constant — stand on all 17s **or** hit soft 17 (`HIT_SOFT_17`).
+
+## Basic strategy (**rules of thumb** — tables vary by decks / S17 / DAS)
+
+- **Hard:** 8− hit; 9 double vs 3–6 else hit; 10 double vs 2–9; 11 double vs 2–10; 12 hit vs 2–3, stand vs 4–6; 13–16 stand vs 2–6 else hit; 17+ stand.
+- **Soft:** A2–A3 double vs 5–6 else hit; A4–A5 double vs 4–6 else hit; A6 double vs 3–6 else hit; A7 stand vs 2,7,8 / double vs 3–6 / hit vs 9–A; A8–A9 stand.
+- **Pairs:** always split A,A and 8,8; never split 10s or 5s; split 2,3,6,7 vs low dealer; split 9s except vs 7,10,A; 4s rarely.
+- **Double:** prefer 10/11 and soft doubles vs weak upcards when allowed.
+
+Label advice as **rules of thumb** in comments/UI.
+
+## 1. Outline — prototypes by chapter / topic
+
+```cpp
+// Ch9 pointers + dynamic memory
+void shuffleDeck(Card *deck, int n);
+Card dealCard(Card *deck, int &top);          // advance top index
+Card *newShoe(int nDecks);                    // new[] — caller destroyShoe
+void destroyShoe(Card *deck);
+
+// Ch11 structs + enums + pass/return styles
+int  handValue(Hand h);                       // by value
+bool isSoft(const Hand &h);                   // const reference
+bool isPair(const Hand *h);                   // pointer
+Action recommendAction(const Hand &player, Rank dealerUp);
+bool dealerShouldHit(const Hand &dealer);     // uses HIT_SOFT_17
+void playDealer(Hand &dealer, Card *deck, int &top);
+void settleBet(Player &p, const Hand &player, const Hand &dealer);
+
+// Ch10 strings
+void promptName(char name[], int maxLen);     // C-string
+void showAction(const string &label);         // std::string
+
+// Ch12 binary records
+bool savePlayer(fstream &out, const Player *p); // ios::binary write
+bool loadPlayer(fstream &in, Player *p);       // ios::binary read
+```
+
+Group strategy helpers with Ch11; memory teardown with Ch9; I/O with Ch12.
+
+## 2. Data design
+
+```cpp
+enum Suit  { HEARTS, DIAMONDS, CLUBS, SPADES };
+enum Rank  { ACE=1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING };
+enum Action{ HIT, STAND, DOUBLE, SPLIT };
+
+struct Card { Rank rank; Suit suit; };
+
+struct Hand {
+    Card *cards;   // dynamic
+    int   nCards;
+    int   wager;
+};
+
+struct Player {
+    char   name[32];     // C-string practice
+    string displayName;  // std::string practice
+    float  bankroll;
+    Hand   hand;
+};
+
+// Strategy as 2D tables [playerTotal][dealerUpcard] — rules of thumb
+// Example dims: hard 5..21 x dealer Ace..10 → Action
+```
+
+Nested option: `Player` contains `Hand`; shoe is `Card*` or `Card` array of structures.
+
+## 3. Memory map
+
+| Region | What lives there |
+|---|---|
+| **Stack** | locals, `Hand` shells, references, `fstream` objects |
+| **Heap** | `Card` shoe, `Hand::cards`, dynamic `Player` / arrays of `Hand` |
+| **Static/const** | `HIT_SOFT_17`, `BJ_PAY=1.5f`, strategy tables |
+
+Pass-by:
+
+- **Copy** — small `Card` / computed `Hand` snapshot when mutation must not escape.
+- **Reference / `const` reference** — big structs for speed without accidental writes.
+- **Pointer** — optional objects, arrays, `destroy` targets, binary record APIs.
+
+```cpp
+Card *shoe = new Card[52 * nDecks];
+Hand *hands = new Hand[nSeats];
+for (int i = 0; i < nSeats; i++) {
+    hands[i].cards = new Card[12];
+    hands[i].nCards = 0;
+}
+// pointer offset access: (hands + i)->cards[j]  or  hands[i].cards[j]
+// teardown:
+for (int i = 0; i < nSeats; i++) delete [] hands[i].cards;
+delete [] hands;
+delete [] shoe;
+```
+
+## 4. Rough draft skeleton (compilable TODOs)
+
+```cpp
+/*
+ * File:   BlackjackDraft.cpp
+ * Author: Abraham Murillo
+ * Purpose: Rough draft skeleton — Chapters 9–12 topics, not finished game
+ */
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+//User Libraries
+// #include "Card.h"  // TODO: move structs/enums to headers
+
+//Global Constants Only
+const bool  HIT_SOFT_17 = false;   // stand on all 17s when false
+const float BJ_PAY      = 1.5f;    // 3:2
+
+enum Suit { HEARTS, DIAMONDS, CLUBS, SPADES };
+enum Rank { ACE=1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING };
+enum Action { HIT, STAND, DOUBLE, SPLIT };
+
+struct Card { Rank rank; Suit suit; };
+struct Hand { Card *cards; int nCards; int wager; };
+struct Player { char name[32]; string displayName; float bankroll; Hand hand; };
+
+//Function Prototypes
+Card *newShoe(int nDecks);
+void  destroyShoe(Card *deck);
+void  shuffleDeck(Card *deck, int n);
+Card  dealCard(Card *deck, int &top);
+int   handValue(Hand h);
+bool  isSoft(const Hand &h);
+bool  isPair(const Hand *h);
+bool  dealerShouldHit(const Hand &dealer);
+Action recommendAction(const Hand &player, Rank dealerUp);
+void  playDealer(Hand &dealer, Card *deck, int &top);
+void  settleBet(Player &p, const Hand &player, const Hand &dealer);
+bool  savePlayer(fstream &out, const Player *p);
+bool  loadPlayer(fstream &in, Player *p);
+
+int main(int argc, char** argv) {
+    srand(static_cast<unsigned int>(time(0)));
+    // TODO: promptName C-string; set displayName string
+    // TODO: bet → deal two → player loop using recommendAction
+    // TODO: playDealer → settleBet → optional savePlayer binary
+    // TODO: destroy all heap (cards, shoe)
+    return 0; //Exit stage right
+}
+
+Card *newShoe(int nDecks) {
+    int n = 52 * nDecks;
+    Card *deck = new Card[n];
+    // TODO: fill ranks/suits across decks
+    return deck;
+}
+void destroyShoe(Card *deck) { delete [] deck; }
+void shuffleDeck(Card *deck, int n) { /* TODO pointer-swap shuffle */ }
+Card dealCard(Card *deck, int &top) { return deck[top++]; /* TODO bounds */ }
+int  handValue(Hand h) { /* TODO Ace 1/11 */ return 0; }
+bool isSoft(const Hand &h) { /* TODO */ return false; }
+bool isPair(const Hand *h) { /* TODO */ return false; }
+bool dealerShouldHit(const Hand &dealer) { /* TODO HIT_SOFT_17 */ return false; }
+Action recommendAction(const Hand &player, Rank dealerUp) {
+    // TODO: hard/soft/pair tables — label rules of thumb
+    return HIT;
+}
+void playDealer(Hand &dealer, Card *deck, int &top) { /* TODO */ }
+void settleBet(Player &p, const Hand &player, const Hand &dealer) { /* TODO 3:2, push */ }
+bool savePlayer(fstream &out, const Player *p) {
+    // TODO: out.write(reinterpret_cast<const char*>(...), sizeof...);
+    return true;
+}
+bool loadPlayer(fstream &in, Player *p) {
+    // TODO: in.read(reinterpret_cast<char*>(...), sizeof...);
+    return true;
+}
+```
+
+## 5. Light SQL analogy
+
+Strategy ≈ lookup table `(hand_type, player_total, dealer_upcard, action)`.  
+Optional stretch: SQLite round log `(round_id, bet, result, bankroll)` — **no real DB code** unless asked.
+
+## 6. Overview + test checklist
+
+Shoe (Ch9 heap) → deal into `Hand` structs (Ch11) → `recommendAction` tables → `playDealer` / `settleBet` → names via C-string/`string` (Ch10) → bankroll via binary records (Ch12) → `destroy*` teardown.
+
+**Checklist:** Ace soft/hard totals; split 8s; dealer bust; leak-free teardown; binary save/load round-trip.
