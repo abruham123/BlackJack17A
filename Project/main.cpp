@@ -246,15 +246,23 @@ int main(int, char**) {
                     addCard(player->hands[1], dealCard(deck));
                     cout << "Split.\n";
                     // Play each split hand with hit/stand only
+                    // Always show the hand first (even if already 21) so UX doesn't skip it
                     for(int h = 0; h < player->nHands; h++){
-                        char ch2 = 'H';
-                        while(handValue(player->hands[h]) < 21 && ch2 == 'H'){
-                            cout << "Hand " << (h+1) << ": ";
-                            prntHand(player->hands[h]);
-                            cout << "(" << handValue(player->hands[h]) << ") [h/s]: ";
+                        cout << "Hand " << (h+1) << ": ";
+                        prntHand(player->hands[h]);
+                        cout << "(" << handValue(player->hands[h]) << ")\n";
+                        while(handValue(player->hands[h]) < 21){
+                            cout << "  [h/s]: ";
+                            char ch2;
                             cin >> ch2;
                             ch2 = static_cast<char>(toupper(static_cast<unsigned char>(ch2)));
-                            if(ch2 == 'H') addCard(player->hands[h], dealCard(deck));
+                            if(ch2 == 'S') break;
+                            if(ch2 == 'H'){
+                                addCard(player->hands[h], dealCard(deck));
+                                cout << "  ";
+                                prntHand(player->hands[h]);
+                                cout << "(" << handValue(player->hands[h]) << ")\n";
+                            }
                         }
                     }
                     handDone = true;
