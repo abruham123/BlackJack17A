@@ -19,6 +19,9 @@ struct Player{
     Hand  *hands;         // new Hand[maxHands]; row 0 = first hand
     int    nHands;
     int    maxHands;
+    int    wins;          // settled-hand wins this session
+    int    losses;        // settled-hand losses this session
+    int    games;         // settled hands (includes pushes)
 };
 
 //Function Prototypes — bodies in main.cpp

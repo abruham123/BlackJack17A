@@ -2,8 +2,8 @@
  * File:   main.cpp
  * Author: Abraham Murillo
  * Created on November 18th, 2026, 8:10 PM
- * Purpose: Blackjack Project v7 — finished playable game (no insurance, no W/L).
- *          Light UI cleanup. Comments explain prototypes, main, and -> below.
+ * Purpose: Blackjack Project v7 — finished playable game (no insurance).
+ *          Session W/L tracker on Player + PlayerRecord. Comments explain ->.
  *
  * How the pieces fit (game logic + chapters):
  *   Card  = one playing card (Ch11 struct)
@@ -291,15 +291,20 @@ int main(int, char**) {
             }
         }
         
-        cout << "Bankroll: $" << player->bankroll << "\nAgain (y/n)? ";
+        cout << "Bankroll: $" << player->bankroll
+             << "  W/L: " << player->wins << "/" << player->losses
+             << "  (games " << player->games << ")\nAgain (y/n)? ";
         cin >> again;
     }
     
     // -------- Save + teardown --------
-    // Save name + bankroll only (no W/L tracking)
+    // Save name, bankroll, and W/L into PlayerRecord (Ch12)
     PlayerRecord *recs = newRecords(1);           // [Ch9] heap array of records
     copyName(recs[0].name, player->name);         // [Ch10.6] own C-string fn
     recs[0].bankroll = player->bankroll;          // final chips after all rounds
+    recs[0].games = player->games;
+    recs[0].wins = player->wins;
+    recs[0].losses = player->losses;
     saveRecords(recFile, recs, 1);                // count + POD array [Ch12.7/.8]
     cout << "\nSaved: ";
     prntRecord(recs[0]);
@@ -528,6 +533,9 @@ Player *newPlayer(const char name[], int maxHands, int maxCards, float bank){
     p->bankroll = bank;
     p->maxHands = maxHands;
     p->nHands = 1;
+    p->wins = 0;
+    p->losses = 0;
+    p->games = 0;
     p->hands = new Hand[p->maxHands];    // array of Hand structs  [Ch11.5]
     for(int i = 0; i < p->maxHands; i++){
         p->hands[i] = makeHand(maxCards);
@@ -558,23 +566,28 @@ void settleHand(Player *p, const Hand &playerH, const Hand &dealerH,
     int dv = handValue(dealerH);
     float bet = static_cast<float>(playerH.wager);
     
+    p->games++;                          // every settled hand counts
     if(pv > 21){
         cout << "  Bust — lose $" << bet << endl;
-        // chips already gone — nothing to add back
+        p->losses++;                     // chips already gone
     }else if(dv > 21){
         cout << "  Dealer bust — win $" << bet << endl;
         p->bankroll += bet * 2.0f;       // -> changes player's money (stake+win)
+        p->wins++;
     }else if(playerBJ && dv != 21){
         cout << "  Blackjack — win $" << (bet * bjPay) << endl;
         p->bankroll += bet + bet * bjPay;  // stake back + 3:2
+        p->wins++;
     }else if(pv > dv){
         cout << "  You win $" << bet << endl;
         p->bankroll += bet * 2.0f;
+        p->wins++;
     }else if(pv < dv){
         cout << "  Dealer wins — lose $" << bet << endl;
+        p->losses++;
     }else{
         cout << "  Push — bet returned\n";
-        p->bankroll += bet;              // stake only
+        p->bankroll += bet;              // stake only (games++ already; no W/L)
     }
 }
 
@@ -613,7 +626,7 @@ PlayerRecord *newRecords(int n){
     for(int i = 0; i < n; i++){
         r[i].name[0] = '\0';       // empty C-string
         r[i].bankroll = 0.0f;
-        r[i].games = 0;            // fields exist but this project doesn't track W/L
+        r[i].games = 0;
         r[i].wins = 0;
         r[i].losses = 0;
     }
@@ -650,6 +663,8 @@ bool readRecordAt(fstream &in, PlayerRecord &rec, int index){
 }
 
 void prntRecord(const PlayerRecord &rec){
-    // Name + bankroll only (no W/L tracking)
-    cout << rec.name << "  $" << rec.bankroll << endl;
+    // Name, bankroll, and session W/L from binary record
+    cout << rec.name << "  $" << rec.bankroll
+         << "  W/L=" << rec.wins << "/" << rec.losses
+         << "  games=" << rec.games << endl;
 }
