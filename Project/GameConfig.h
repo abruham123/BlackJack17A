@@ -18,7 +18,7 @@ struct GameConfig{
 };
 
 //Function Prototypes — bodies in main.cpp
-void setConfig(GameConfig &cfg, int nDecks, bool hitSoft17, float bjPay);
+void setConfig(GameConfig &cfg, int nDecks, bool hitSoft17, float bjPay);       //Like the rules of the game
 bool saveConfig(fstream &out, const GameConfig &cfg);
 bool loadConfig(fstream &in, GameConfig &cfg);
 void prntConfig(const GameConfig &cfg);

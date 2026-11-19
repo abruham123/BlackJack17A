@@ -1,23 +1,23 @@
 /* 
  * File:   main.cpp
  * Author: Abraham Murillo
- * Created on November 17th, 2026, 7:15 PM
- * Purpose: Blackjack Project v6 — interactive hit/stand/double/split + settle.
- *          Keeps face/suit/value bridge. main owns every pointer / frees them.
- *          Comments below explain syntax on prototypes and in main.
+ * Created on November 18th, 2026, 8:10 PM
+ * Purpose: Blackjack Project v7 — finished playable game (no insurance, no W/L).
+ *          Light UI cleanup. Comments explain prototypes, main, and -> below.
  */
 
 //System Libraries
-#include <iostream>   // cout, cin, endl
-#include <iomanip>    // fixed, setprecision — format money
-#include <cstdlib>    // srand, rand
-#include <ctime>      // time
-#include <cstring>    // strncpy — C-string copy
-#include <string>     // std::string
-#include <fstream>    // fstream — binary files
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+#include <cstring>
+#include <cctype>     // toupper, isalpha — Ch10 character testing
+#include <string>
+#include <fstream>
 using namespace std;
 
-//User Libraries — bring in struct types + some prototypes from headers
+//User Libraries
 #include "Card.h"
 #include "Deck.h"
 #include "Hand.h"
@@ -27,58 +27,45 @@ using namespace std;
 #include "PlayerRecord.h"
 
 //Global Constants Only, No Global Variables
-const bool  HIT_SOFT_17 = false;   // false = stand on all 17s
-const float BJ_PAY      = 1.5f;    // natural blackjack pays 3:2 → 1.5 * bet
+const bool  HIT_SOFT_17 = false;
+const float BJ_PAY      = 1.5f;    // 3:2
 
 //==============================================================================
-// Function Prototypes
-// Syntax tips:
-//   TYPE name(args);     → "this function exists; body is later"
-//   TYPE*                → returns/points to heap memory (caller often delete)
-//   TYPE &               → reference: same object, can change it (no copy)
-//   const TYPE &         → reference, but read-only (faster, safer)
-//   TYPE name[]          → array decays to pointer (C-string = char[])
-//   void                 → returns nothing
-//   bool                 → returns true/false
+// Function Prototypes  (* = pointer, & = reference, const = read-only)
 //==============================================================================
+char suit(int);
+char face(int);
+char value(int);
+void copyName(char dest[], const char src[]);  // tiny own C-string helper
 
-//----- Card helpers (v1 bridge): take int index, return one char -----
-char suit(int);     // suit letter S/D/C/H from card index
-char face(int);     // face letter A..K from card index
-char value(int);    // hard pip value 1..10 (Ace stored as 1 here)
-
-//----- Deck: Deck* means "address of a Deck on the heap" -----
-Deck *newDeck(int nDecks);                 // returns pointer → new Deck + Card[]
-void  fillDeck(Deck *d);                   // Deck* = pass by pointer (can change deck)
+Deck *newDeck(int nDecks);          // returns Deck* (heap address)
+void  fillDeck(Deck *d);            // Deck* — change the deck through pointer
 void  shuffleDeck(Deck *d);
-Card  dealCard(Deck *d);                   // returns a Card by value (copy of one card)
-void  prntDeck(const Deck *d, int perLine);// const Deck* = may read, not modify
-void  destroyDeck(Deck *d);                // delete [] cards; delete deck
+Card  dealCard(Deck *d);
+void  prntDeck(const Deck *d, int perLine);
+void  destroyDeck(Deck *d);
 
-//----- Hand: & = reference; const & = read-only reference; * = pointer -----
-Hand makeHand(int maxCards);               // returns Hand by value (shell + new cards)
-void addCard(Hand &h, Card c);             // Hand& = change caller's hand in place
-void clearHand(Hand &h);                   // reset nCards to 0 (keep allocated array)
-void prntHand(const Hand &h);              // const Hand& = print without copying/changing
-int  handValue(Hand h);                    // Hand by value = works on a copy of the shell
-bool isSoft(const Hand &h);                // true if Ace counting as 11
-bool isPair(const Hand *h);                // Hand* = optional / address of a hand
-void destroyHand(Hand &h);                 // delete [] the hand's Card array
+Hand makeHand(int maxCards);
+void addCard(Hand &h, Card c);      // Hand& — same hand, no copy
+void clearHand(Hand &h);
+void prntHand(const Hand &h);
+int  handValue(Hand h);             // by value — copy of Hand shell
+bool isSoft(const Hand &h);
+bool isPair(const Hand *h);         // Hand* — address of a hand
+void destroyHand(Hand &h);
 
-//----- Dealer / Player -----
-Dealer *newDealer(int maxCards);           // Dealer* on heap; nested Hand inside
+Dealer *newDealer(int maxCards);
 void    destroyDealer(Dealer *dlr);
 bool    dealerShouldHit(const Hand &dealer);
-void    playDealer(Dealer *dlr, Deck *deck); // hits until stand rule
+void    playDealer(Dealer *dlr, Deck *deck);
 Player *newPlayer(const char name[], int maxHands, int maxCards, float bank);
-void    prntPlayer(const Player *p);       // const Player* = read-only pointer
+void    prntPlayer(const Player *p);
 void    destroyPlayer(Player *p);
 void    settleHand(Player *p, const Hand &playerH, const Hand &dealerH,
-                   bool playerBJ, float bjPay);  // update bankroll
+                   bool playerBJ, float bjPay);
 
-//----- Ch12 binary I/O: fstream& must be by reference (streams are not copyable) -----
 void setConfig(GameConfig &cfg, int nDecks, bool hitSoft17, float bjPay);
-bool saveConfig(fstream &out, const GameConfig &cfg);
+bool saveConfig(fstream &out, const GameConfig &cfg);   // fstream& required
 bool loadConfig(fstream &in, GameConfig &cfg);
 void prntConfig(const GameConfig &cfg);
 PlayerRecord *newRecords(int n);
@@ -89,144 +76,124 @@ bool readRecordAt(fstream &in, PlayerRecord &rec, int index);
 void prntRecord(const PlayerRecord &rec);
 
 //Execution Begins Here
-int main(int argc, char** argv) {
-    // argc / argv = command-line args (unused here; professor style keeps them)
-    
-    // srand needs an unsigned seed; time(0) is "now" so shuffle changes each run
+int main(int, char**) {
     srand(static_cast<unsigned int>(time(0)));
+    cout << fixed << setprecision(2);
     
-    cout << fixed << setprecision(2);  // money prints like 100.00
-    
-    //----- Setup config (plain struct on the STACK — no new needed) -----
-    GameConfig cfg;   // local variable; lives until main ends
+    // Stack config (no new)
+    GameConfig cfg;
     setConfig(cfg, 1, HIT_SOFT_17, BJ_PAY);
     
-    // fstream objects also on the stack; open for read+write binary
-    // | combines flags: in AND out AND binary AND trunc (start empty)
+    // Two binary files open for input+output at once (Ch12.10)
     fstream cfgFile;
     fstream recFile;
     cfgFile.open("config.bin", ios::in|ios::out|ios::binary|ios::trunc);
     recFile.open("players.bin", ios::in|ios::out|ios::binary|ios::trunc);
-    if(!cfgFile || !recFile){          // stream converts to false if open failed
-        cout << "Error opening binary files." << endl;
-        return 1;                      // non-zero = error exit
+    if(!cfgFile || !recFile){
+        cout << "Could not open save files.\n";
+        return 1;
     }
     saveConfig(cfgFile, cfg);
     
-    //----- Heap objects: * means pointer; new returns an address -----
-    // main OWNS these → must destroy* / delete before exit
+    // Heap: * holds an address. -> later means "go to that address, use member"
     const int maxCards = 12;
     const int maxHands = 4;
-    Deck   *deck   = newDeck(cfg.nDecks);              // pointer variable
+    Deck   *deck   = newDeck(cfg.nDecks);
     Dealer *dealer = newDealer(maxCards);
     Player *player = newPlayer("Abraham", maxHands, maxCards, 100.0f);
     
     fillDeck(deck);
     shuffleDeck(deck);
     
-    cout << "=== Blackjack Project v6 (play loop) ===" << endl;
-    prntConfig(cfg);
-    prntPlayer(player);
-    cout << "Commands: h=hit  s=stand  d=double  p=split  q=quit round early" << endl;
+    cout << "\n===== BLACKJACK v7 =====\n";
+    cout << "Bankroll starts at $100.  No insurance.\n";
+    cout << "[h] hit  [s] stand  [d] double  [p] split\n";
     
-    //----- Play rounds until player quits or bankroll is empty -----
     char again = 'y';
     while(again == 'y' || again == 'Y'){
+        // player->bankroll : pointer player, member bankroll
         if(player->bankroll <= 0){
-            cout << "Bankroll empty. Game over." << endl;
-            break;   // leave the while loop
+            cout << "\nOut of money. Thanks for playing.\n";
+            break;
         }
         
-        // Bet: cin >> reads a float into bet (stack variable)
         float bet = 0;
-        cout << "\nBankroll $" << player->bankroll << "  Enter bet: ";
+        cout << "\n----------------------------\n";
+        cout << "Bankroll: $" << player->bankroll << "\nBet: ";
         cin >> bet;
         if(bet <= 0 || bet > player->bankroll){
-            cout << "Invalid bet." << endl;
-            cout << "Play again (y/n)? ";
+            cout << "Invalid bet.\nAgain (y/n)? ";
             cin >> again;
-            continue;  // next while iteration
+            continue;
         }
         
-        // Clear hands for a new round (arrays stay allocated)
         clearHand(dealer->hand);
         for(int i = 0; i < player->maxHands; i++){
             clearHand(player->hands[i]);
-            player->hands[i].wager = 0;
         }
         player->nHands = 1;
         player->hands[0].wager = bet;
-        player->bankroll -= bet;   // take bet up front
+        player->bankroll -= bet;
         
-        // Deal two each: player->hands[0] is first hand (row 0)
-        // -> means "follow the pointer, then use member"
         addCard(player->hands[0], dealCard(deck));
         addCard(dealer->hand,     dealCard(deck));
         addCard(player->hands[0], dealCard(deck));
         addCard(dealer->hand,     dealCard(deck));
         
-        cout << "Dealer shows: " << dealer->hand.cards[0].faceVal
-             << dealer->hand.cards[0].suitVal << " ??" << endl;
-        cout << "Your hand: ";
+        cout << "Dealer: " << dealer->hand.cards[0].faceVal
+             << dealer->hand.cards[0].suitVal << " ??\n";
+        cout << "You:    ";
         prntHand(player->hands[0]);
-        cout << " value=" << handValue(player->hands[0]) << endl;
+        cout << "(" << handValue(player->hands[0]) << ")\n";
         
         bool playerBJ = (player->hands[0].nCards == 2 &&
                          handValue(player->hands[0]) == 21);
         bool dealerBJ = (dealer->hand.nCards == 2 &&
                          handValue(dealer->hand) == 21);
         
-        // Natural blackjack check before hitting
         if(playerBJ || dealerBJ){
-            cout << "Dealer hand: ";
+            cout << "Dealer: ";
             prntHand(dealer->hand);
-            cout << endl;
+            cout << "(" << handValue(dealer->hand) << ")\n";
             settleHand(player, player->hands[0], dealer->hand, playerBJ, cfg.bjPay);
         }else{
-            // Optional split on first action if pair
             char choice;
             bool firstAction = true;
             bool handDone = false;
             
             while(!handDone){
-                cout << "Action (h/s/d";
+                cout << "Action [h/s/d";
                 if(firstAction && isPair(&player->hands[0]) &&
                    player->nHands < player->maxHands &&
-                   player->bankroll >= player->hands[0].wager){
-                    cout << "/p";
-                }
-                cout << "): ";
-                cin >> choice;   // reads one char
+                   player->bankroll >= player->hands[0].wager) cout << "/p";
+                cout << "]: ";
+                cin >> choice;
+                choice = static_cast<char>(toupper(static_cast<unsigned char>(choice)));
                 
-                if(choice == 'h' || choice == 'H'){
+                if(choice == 'H'){
                     addCard(player->hands[0], dealCard(deck));
-                    cout << "Your hand: ";
+                    cout << "You: ";
                     prntHand(player->hands[0]);
-                    cout << " value=" << handValue(player->hands[0]) << endl;
+                    cout << "(" << handValue(player->hands[0]) << ")\n";
                     if(handValue(player->hands[0]) > 21){
-                        cout << "Bust!" << endl;
+                        cout << "Bust.\n";
                         handDone = true;
                     }
-                }else if(choice == 's' || choice == 'S'){
+                }else if(choice == 'S'){
                     handDone = true;
-                }else if(choice == 'd' || choice == 'D'){
-                    // Double: one more card, double wager if funds allow
+                }else if(choice == 'D'){
                     if(player->bankroll >= player->hands[0].wager){
                         player->bankroll -= player->hands[0].wager;
                         player->hands[0].wager *= 2;
                         addCard(player->hands[0], dealCard(deck));
-                        cout << "Doubled. Hand: ";
+                        cout << "Double. You: ";
                         prntHand(player->hands[0]);
-                        cout << " value=" << handValue(player->hands[0]) << endl;
+                        cout << "(" << handValue(player->hands[0]) << ")\n";
                         handDone = true;
-                    }else{
-                        cout << "Not enough bankroll to double." << endl;
-                    }
-                }else if((choice == 'p' || choice == 'P') && firstAction &&
-                         isPair(&player->hands[0]) &&
+                    }else cout << "Need more cash to double.\n";
+                }else if(choice == 'P' && firstAction && isPair(&player->hands[0]) &&
                          player->nHands < player->maxHands &&
                          player->bankroll >= player->hands[0].wager){
-                    // Split: move 2nd card to hands[1], deal one to each
                     player->bankroll -= player->hands[0].wager;
                     player->hands[1].wager = player->hands[0].wager;
                     addCard(player->hands[1], player->hands[0].cards[1]);
@@ -234,72 +201,55 @@ int main(int argc, char** argv) {
                     player->nHands = 2;
                     addCard(player->hands[0], dealCard(deck));
                     addCard(player->hands[1], dealCard(deck));
-                    cout << "Split hand0: "; prntHand(player->hands[0]);
-                    cout << "  hand1: "; prntHand(player->hands[1]); cout << endl;
-                    // Simple: after split, auto-finish each with stand after optional hits
+                    cout << "Split.\n";
                     for(int h = 0; h < player->nHands; h++){
-                        char ch2 = 'h';
-                        while(handValue(player->hands[h]) < 21 &&
-                              (ch2 == 'h' || ch2 == 'H')){
-                            cout << "Hand " << h << ": ";
+                        char ch2 = 'H';
+                        while(handValue(player->hands[h]) < 21 && ch2 == 'H'){
+                            cout << "Hand " << (h+1) << ": ";
                             prntHand(player->hands[h]);
-                            cout << " value=" << handValue(player->hands[h])
-                                 << "  (h/s): ";
+                            cout << "(" << handValue(player->hands[h]) << ") [h/s]: ";
                             cin >> ch2;
-                            if(ch2 == 'h' || ch2 == 'H'){
-                                addCard(player->hands[h], dealCard(deck));
-                            }
+                            ch2 = static_cast<char>(toupper(static_cast<unsigned char>(ch2)));
+                            if(ch2 == 'H') addCard(player->hands[h], dealCard(deck));
                         }
                     }
                     handDone = true;
-                }else if(choice == 'q' || choice == 'Q'){
-                    handDone = true;
-                }else{
-                    cout << "Unknown command." << endl;
+                }else if(isalpha(static_cast<unsigned char>(choice))){
+                    cout << "Use h, s, d, or p.\n";
                 }
                 firstAction = false;
             }
             
-            // Play dealer if any player hand still alive
             bool anyAlive = false;
             for(int h = 0; h < player->nHands; h++){
                 if(handValue(player->hands[h]) <= 21) anyAlive = true;
             }
-            if(anyAlive){
-                playDealer(dealer, deck);
-            }
-            cout << "Dealer final: ";
+            if(anyAlive) playDealer(dealer, deck);
+            
+            cout << "Dealer: ";
             prntHand(dealer->hand);
-            cout << " value=" << handValue(dealer->hand) << endl;
+            cout << "(" << handValue(dealer->hand) << ")\n";
             
             for(int h = 0; h < player->nHands; h++){
-                cout << "Settle hand " << h << ": ";
-                prntHand(player->hands[h]);
-                cout << endl;
                 settleHand(player, player->hands[h], dealer->hand, false, cfg.bjPay);
             }
         }
         
-        cout << "Bankroll now $" << player->bankroll << endl;
-        cout << "Play again (y/n)? ";
+        cout << "Bankroll: $" << player->bankroll << "\nAgain (y/n)? ";
         cin >> again;
     }
     
-    //----- Save a simple PlayerRecord snapshot (Ch12) -----
+    // Save name + bankroll only (no W/L tracking)
     PlayerRecord *recs = newRecords(1);
-    strncpy(recs[0].name, player->name, 31);
-    recs[0].name[31] = '\0';
+    copyName(recs[0].name, player->name);
     recs[0].bankroll = player->bankroll;
-    recs[0].games = 1;
-    recs[0].wins = 0;
-    recs[0].losses = 0;
     saveRecords(recFile, recs, 1);
-    cout << "Saved record: ";
+    cout << "\nSaved: ";
     prntRecord(recs[0]);
+    cout << "Thanks for playing.\n";
     
-    //----- Teardown: free EVERYTHING main allocated -----
     destroyRecords(recs);
-    destroyPlayer(player);   // frees each Hand's cards, then hands[], then Player
+    destroyPlayer(player);
     destroyDealer(dealer);
     destroyDeck(deck);
     cfgFile.close();
@@ -310,7 +260,7 @@ int main(int argc, char** argv) {
 }
 
 //******************************************************************************
-//*                            Card helpers (v1 bridge)                        *
+//* Card helpers — plain ints/chars, no pointers here                          *
 //******************************************************************************
 char value(int n){
     n >= 0 ? n %= 13 : 0;
@@ -331,32 +281,44 @@ char suit(int n){
     return suits[n / 13];
 }
 
+// Own C-string copy (Ch10) — dest/src are char arrays → decay to char*
+void copyName(char dest[], const char src[]){
+    strncpy(dest, src, 31);
+    dest[31] = '\0';   // always end C-string with null
+}
+
 //******************************************************************************
-//*                                  Deck                                      *
+//* Deck — every d->... means: follow pointer d, then use that member          *
 //******************************************************************************
 Deck *newDeck(int nDecks){
     if(nDecks < 1) nDecks = 1;
-    Deck *d = new Deck;
-    d->nCards = 52 * nDecks;
+    Deck *d = new Deck;          // d holds the ADDRESS of a Deck
+    d->nCards = 52 * nDecks;     // same as (*d).nCards
     d->top = 0;
-    d->cards = new Card[d->nCards];
-    return d;
+    d->cards = new Card[d->nCards];  // d->cards is a Card* (array on heap)
+    return d;                    // return the address to main
 }
 
 void fillDeck(Deck *d){
+    // Pointer compare: skip null (Ch9 comparing pointers)
+    if(d == nullptr) return;
     for(int i = 0; i < d->nCards; i++){
         int idx = i % 52;
-        d->cards[i].index   = idx;
-        d->cards[i].faceVal = face(idx);
-        d->cards[i].suitVal = suit(idx);
-        d->cards[i].hardVal = value(idx);
+        // Pointer arithmetic: *(d->cards + i) is the same as d->cards[i]
+        Card *pCard = d->cards + i;   // address of element i
+        pCard->index   = idx;         // -> on a Card*
+        pCard->faceVal = face(idx);
+        pCard->suitVal = suit(idx);
+        pCard->hardVal = value(idx);
     }
     d->top = 0;
 }
 
 void shuffleDeck(Deck *d){
+    if(d == nullptr) return;
     for(int i = d->nCards - 1; i > 0; i--){
         int j = rand() % (i + 1);
+        // Swap through the pointer's array
         Card temp = d->cards[i];
         d->cards[i] = d->cards[j];
         d->cards[j] = temp;
@@ -365,15 +327,15 @@ void shuffleDeck(Deck *d){
 }
 
 Card dealCard(Deck *d){
-    if(d->top >= d->nCards){
-        shuffleDeck(d);
-    }
+    if(d->top >= d->nCards) shuffleDeck(d);
+    // d->top++ uses the int at that address, then advances it
     return d->cards[d->top++];
 }
 
 void prntDeck(const Deck *d, int perLine){
     cout << endl;
     for(int i = 0; i < d->nCards; i++){
+        // const Deck* still allows -> for reading members
         cout << d->cards[i].faceVal << d->cards[i].suitVal << " ";
         if(i % perLine == (perLine - 1)) cout << endl;
     }
@@ -381,31 +343,31 @@ void prntDeck(const Deck *d, int perLine){
 }
 
 void destroyDeck(Deck *d){
-    delete [] d->cards;
-    delete d;
+    if(d == nullptr) return;     // comparing pointer to null
+    delete [] d->cards;          // free the Card array first
+    d->cards = nullptr;          // pointer init / clear after delete
+    delete d;                    // then free the Deck shell
 }
 
 //******************************************************************************
-//*                                  Hand                                      *
+//* Hand — & means "the real Hand"; * means "address of a Hand"                *
 //******************************************************************************
 Hand makeHand(int maxCards){
     if(maxCards < 2) maxCards = 2;
-    Hand h;
+    Hand h;                      // local Hand shell
     h.maxCards = maxCards;
     h.nCards = 0;
     h.wager = 0;
-    h.cards = new Card[h.maxCards];
+    h.cards = new Card[h.maxCards];  // . not -> because h is not a pointer
     return h;
 }
 
 void addCard(Hand &h, Card c){
-    if(h.nCards < h.maxCards){
-        h.cards[h.nCards++] = c;
-    }
+    // h is an alias — h.cards changes the caller's hand
+    if(h.nCards < h.maxCards) h.cards[h.nCards++] = c;
 }
 
 void clearHand(Hand &h){
-    // Keep the Card array; just mark empty for the next round
     h.nCards = 0;
     h.wager = 0;
 }
@@ -417,21 +379,18 @@ void prntHand(const Hand &h){
 }
 
 int handValue(Hand h){
-    int total = 0;
-    int aces = 0;
+    // by-value: h is a copy of the shell (still shares the same cards pointer)
+    int total = 0, aces = 0;
     for(int i = 0; i < h.nCards; i++){
         total += static_cast<int>(h.cards[i].hardVal);
         if(h.cards[i].faceVal == 'A') aces++;
     }
-    if(aces > 0 && total + 10 <= 21){
-        total += 10;
-    }
+    if(aces > 0 && total + 10 <= 21) total += 10;
     return total;
 }
 
 bool isSoft(const Hand &h){
-    int total = 0;
-    int aces = 0;
+    int total = 0, aces = 0;
     for(int i = 0; i < h.nCards; i++){
         total += static_cast<int>(h.cards[i].hardVal);
         if(h.cards[i].faceVal == 'A') aces++;
@@ -440,6 +399,7 @@ bool isSoft(const Hand &h){
 }
 
 bool isPair(const Hand *h){
+    // h is a pointer → must use ->  (h->nCards means (*h).nCards)
     if(h == nullptr || h->nCards != 2) return false;
     return h->cards[0].hardVal == h->cards[1].hardVal;
 }
@@ -452,17 +412,17 @@ void destroyHand(Hand &h){
 }
 
 //******************************************************************************
-//*                              Dealer / Player                               *
+//* Dealer / Player — nested Hand; Player holds Hand* array for splits         *
 //******************************************************************************
 Dealer *newDealer(int maxCards){
-    Dealer *d = new Dealer;
-    d->hand = makeHand(maxCards);
+    Dealer *d = new Dealer;      // d → Dealer on heap
+    d->hand = makeHand(maxCards);// nested Hand lives inside *d
     return d;
 }
 
 void destroyDealer(Dealer *dlr){
     if(dlr == nullptr) return;
-    destroyHand(dlr->hand);
+    destroyHand(dlr->hand);      // free cards inside nested hand
     delete dlr;
 }
 
@@ -475,6 +435,7 @@ bool dealerShouldHit(const Hand &dealer){
 }
 
 void playDealer(Dealer *dlr, Deck *deck){
+    // Both args are pointers: use -> to reach their members
     while(dealerShouldHit(dlr->hand)){
         addCard(dlr->hand, dealCard(deck));
     }
@@ -483,13 +444,12 @@ void playDealer(Dealer *dlr, Deck *deck){
 Player *newPlayer(const char name[], int maxHands, int maxCards, float bank){
     if(maxHands < 1) maxHands = 1;
     Player *p = new Player;
-    strncpy(p->name, name, 31);
-    p->name[31] = '\0';
-    p->displayName = string(p->name);
+    copyName(p->name, name);             // C-string member via ->
+    p->displayName = string(p->name);    // std::string member via ->
     p->bankroll = bank;
     p->maxHands = maxHands;
     p->nHands = 1;
-    p->hands = new Hand[p->maxHands];
+    p->hands = new Hand[p->maxHands];    // array of Hand structs
     for(int i = 0; i < p->maxHands; i++){
         p->hands[i] = makeHand(maxCards);
     }
@@ -497,10 +457,8 @@ Player *newPlayer(const char name[], int maxHands, int maxCards, float bank){
 }
 
 void prntPlayer(const Player *p){
-    cout << "Player C-string name: " << p->name << endl;
-    cout << "Player string displayName: " << p->displayName << endl;
-    cout << "Bankroll: $" << p->bankroll
-         << "  hands in use: " << p->nHands << "/" << p->maxHands << endl;
+    // const Player* — may read with ->, may not assign into *p
+    cout << p->displayName << "  $" << p->bankroll << endl;
 }
 
 void destroyPlayer(Player *p){
@@ -508,8 +466,8 @@ void destroyPlayer(Player *p){
     for(int i = 0; i < p->maxHands; i++){
         destroyHand(p->hands[i]);
     }
-    delete [] p->hands;
-    delete p;
+    delete [] p->hands;   // free Hand array
+    delete p;             // free Player shell
 }
 
 void settleHand(Player *p, const Hand &playerH, const Hand &dealerH,
@@ -519,27 +477,26 @@ void settleHand(Player *p, const Hand &playerH, const Hand &dealerH,
     float bet = static_cast<float>(playerH.wager);
     
     if(pv > 21){
-        cout << "  Result: player bust — lose $" << bet << endl;
-        // bet already removed
+        cout << "  Bust — lose $" << bet << endl;
     }else if(dv > 21){
-        cout << "  Result: dealer bust — win $" << bet << endl;
-        p->bankroll += bet * 2.0f;          // stake back + win
+        cout << "  Dealer bust — win $" << bet << endl;
+        p->bankroll += bet * 2.0f;       // -> changes player's money
     }else if(playerBJ && dv != 21){
-        cout << "  Result: blackjack — win $" << (bet * bjPay) << endl;
-        p->bankroll += bet + bet * bjPay;   // stake + 3:2
+        cout << "  Blackjack — win $" << (bet * bjPay) << endl;
+        p->bankroll += bet + bet * bjPay;
     }else if(pv > dv){
-        cout << "  Result: player wins — win $" << bet << endl;
+        cout << "  You win $" << bet << endl;
         p->bankroll += bet * 2.0f;
     }else if(pv < dv){
-        cout << "  Result: dealer wins — lose $" << bet << endl;
+        cout << "  Dealer wins — lose $" << bet << endl;
     }else{
-        cout << "  Result: push — bet returned" << endl;
+        cout << "  Push — bet returned\n";
         p->bankroll += bet;
     }
 }
 
 //******************************************************************************
-//*                     GameConfig / PlayerRecord (Ch12 binary)                *
+//* Ch12 binary — pass fstream by reference; write/read POD structs            *
 //******************************************************************************
 void setConfig(GameConfig &cfg, int nDecks, bool hitSoft17, float bjPay){
     cfg.nDecks = (nDecks < 1) ? 1 : nDecks;
@@ -558,9 +515,9 @@ bool loadConfig(fstream &in, GameConfig &cfg){
 }
 
 void prntConfig(const GameConfig &cfg){
-    cout << "GameConfig: nDecks=" << cfg.nDecks
-         << "  hitSoft17=" << (cfg.hitSoft17 ? "true" : "false")
-         << "  bjPay=" << cfg.bjPay << endl;
+    cout << "Decks=" << cfg.nDecks
+         << "  soft17=" << (cfg.hitSoft17 ? "hit" : "stand")
+         << "  BJ pays " << cfg.bjPay << endl;
 }
 
 PlayerRecord *newRecords(int n){
@@ -595,6 +552,7 @@ bool loadRecords(fstream &in, PlayerRecord *r, int n){
 }
 
 bool readRecordAt(fstream &in, PlayerRecord &rec, int index){
+    // Random access: seek to byte offset of record index
     long cursor = static_cast<long>(sizeof(int) + index * sizeof(PlayerRecord));
     in.clear();
     in.seekg(cursor, ios::beg);
@@ -603,7 +561,6 @@ bool readRecordAt(fstream &in, PlayerRecord &rec, int index){
 }
 
 void prntRecord(const PlayerRecord &rec){
-    cout << rec.name << "  bankroll=$" << rec.bankroll
-         << "  games=" << rec.games
-         << "  W/L=" << rec.wins << "/" << rec.losses << endl;
+    // Name + bankroll only (no W/L tracking)
+    cout << rec.name << "  $" << rec.bankroll << endl;
 }
